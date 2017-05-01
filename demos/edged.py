@@ -6,7 +6,7 @@ import imutils
 import cv2
 
 kernel = np.ones((2,2),np.uint8)
-img = cv2.imread('ja2.png')
+img = cv2.imread('ja.png')
 # img = cv2.resize(img, (640, 360))
 newx,newy = img.shape[1]/3,img.shape[0]/3	  #new size (w,h)
 print("Rescaled, new dimensions: ", newx, newy)
@@ -35,16 +35,16 @@ for contour in contours:
     bounding.append([x,y,w,h])
     print([x,y,w,h])
     #Don't plot small false positives that aren't text
-    if w < 40 and h<40:
+    if w < 20 and h<20:
         continue
     cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
-    roi = thresh[y:y+h,x:x+w]
-    roismall = cv2.resize(roi,(10,10))
-    cv2.imshow('norm',img)
-    key = cv2.waitKey(0)
+    # roi = thresh[y:y+h,x:x+w]
+    # roismall = cv2.resize(roi,(10,10))
+    # cv2.imshow('norm',img)
+    # key = cv2.waitKey(0)
 
-    if key == 27:  # (escape to quit)
-        sys.exit()
+    # if key == 27:  # (escape to quit)
+    #     sys.exit()
 
 
 # for cnt in contours:
