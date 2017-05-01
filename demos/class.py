@@ -1,17 +1,23 @@
 import cv2
 import numpy as np
 def captch_ex(file_name ):
-    img  = cv2.imread(file_name)
+    kernel = np.ones((2,2),np.uint8)
 
-    img_final = cv2.imread(file_name)
-    img2gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    # ret, thresh = cv2.threshold(img2gray, 180, 255, cv2.THRESH_BINARY)
-    # image_final = cv2.bitwise_and(img2gray , img2gray , mask =  mask)
+    img = cv2.imread('ja_training.png')
+    # img = cv2.resize(img, (640, 360))
+    newx,newy = img.shape[1]/3,img.shape[0]/3     #new size (w,h)
+    print("Rescaled, new dimensions: ", newx, newy)
+    newimage = cv2.resize(img,(int(newx), int(newy)))
 
-    cv2.imshow('captcha_result' , img2gray)
-    cv2.waitKey()
-    ret,thresh = cv2.threshold(img2gray,90,255,cv2.THRESH_BINARY_INV)
-    im2, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE) # get contours
+    img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)
+    (thresh, im_bw) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    # dilation = cv2.dilate(im_bw,kernel,iterations = 5)
+    # im_bw = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
+    # dilation = cv2.dilate(im_bw,kernel,iterations = 1)
+    eroded = cv2.erode(im_bw,kernel,iterations = 1)
+    cv2.imshow("Image", eroded)
+    cv2.waitKey(0)
+    im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     index = 0
     # list of bounding rects
     bounding = []
@@ -27,10 +33,10 @@ def captch_ex(file_name ):
         #Don't plot small false positives that aren't text
         if w < 40 and h<40:
             continue
-        cv2.rectangle(img2gray,(x,y),(x+w,y+h),(0,0,255),2)
-        roi = thresh[y:y+h,x:x+w]
+        cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,255),2)
+        roi = eroded[y:y+h,x:x+w]
         roismall = cv2.resize(roi,(10,10))
-        cv2.imshow('norm',img2gray)
+        cv2.imshow('norm',eroded)
         key = cv2.waitKey(0)
 
         if key == 27:  # (escape to quit)
@@ -66,7 +72,7 @@ def captch_ex(file_name ):
             # try to classify right here:
 
         #you can crop image and send to OCR  , false detected will return no text :)
-        # cropped = img2gray[rect[1] : rect[1]+rect[3] , rect[0] : rect[0]+rect[2]]
+        # cropped = img[rect[1] : rect[1]+rect[3] , rect[0] : rect[0]+rect[2]]
 
         # s = 'j_' + str(index) + '.png' 
         # cv2.imwrite(s, cropped)
@@ -80,10 +86,10 @@ def captch_ex(file_name ):
     # print(srtdymin[0][1], srtdymax[-1][1]+srtdymax[-1][3])
     # cv2.rectangle(img,(srtdxmin[0][0],srtdymin[0][1]),(srtdxmax[-1][0]+srtdxmax[-1][2],srtdymax[-1][1]+srtdymax[-1][3]),(255,0,255),2)
     # # write original image with added contours to disk  
-    # cv2.imshow('captcha_result' , img2gray)
+    # cv2.imshow('captcha_result' , img)
     # cv2.waitKey()
 
 
-file_name ='Alearn.png'
+file_name ='ja_train.png'
 # file_name ='4.jpg'
 captch_ex(file_name)
