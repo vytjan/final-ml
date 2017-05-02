@@ -51,13 +51,17 @@ def testing():
 
     for single in newbounding:
         [x,y,w,h] = [single[0], single[1], single[2], single[3]]
-        print([x,y,w,h])
+        # print([x,y,w,h])
         cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
         roi = eroded[y:y+h,x:x+w]
         roismall = cv2.resize(roi,(10,10))
         roismall = roismall.reshape((1,100))
         roismall = np.float32(roismall)
-        retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
+        retval, results, neigh_resp, dists = model.findNearest(roismall, k = 2)
+        print("retrieved value is: ", retval)
+        print("results are: ", results)
+        print("Neighbor responses are: ", neigh_resp)
+        print("Distances from input vectors: ", dists)
         string = str(int((results[0][0])))
         cv2.putText(out,string,(x,y+h),0,1,(255,0,0))
 

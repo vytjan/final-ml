@@ -38,44 +38,44 @@ def draw_contour(image, c, i):
   # return the image with the contour number drawn on it
   return image
 
-image = cv2.imread("sample_text.png")
-accumEdged = np.zeros(image.shape[:2], dtype="uint8")
+# image = cv2.imread("sample_text.png")
+# accumEdged = np.zeros(image.shape[:2], dtype="uint8")
  
-# loop over the blue, green, and red channels, respectively
-for chan in cv2.split(image):
-  # blur the channel, extract edges from it, and accumulate the set
-  # of edges for the image
-  chan = cv2.medianBlur(chan, 11)
-  edged = cv2.Canny(chan, 50, 200)
-  accumEdged = cv2.bitwise_or(accumEdged, edged)
+# # loop over the blue, green, and red channels, respectively
+# for chan in cv2.split(image):
+#   # blur the channel, extract edges from it, and accumulate the set
+#   # of edges for the image
+#   chan = cv2.medianBlur(chan, 11)
+#   edged = cv2.Canny(chan, 50, 200)
+#   accumEdged = cv2.bitwise_or(accumEdged, edged)
  
-# show the accumulated edge map
-cv2.imshow("Edge Map", accumEdged)
+# # show the accumulated edge map
+# cv2.imshow("Edge Map", accumEdged)
 
-# find contours in the accumulated image, keeping only the largest
-# ones
-(im2, cnts, _) = cv2.findContours(accumEdged.copy(), cv2.RETR_EXTERNAL,
-  cv2.CHAIN_APPROX_SIMPLE)
-cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
-orig = image.copy()
+# # find contours in the accumulated image, keeping only the largest
+# # ones
+# (im2, cnts, _) = cv2.findContours(accumEdged.copy(), cv2.RETR_EXTERNAL,
+#   cv2.CHAIN_APPROX_SIMPLE)
+# cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+# orig = image.copy()
  
-# loop over the (unsorted) contours and draw them
-for (i, c) in enumerate(cnts):
-  orig = draw_contour(orig, c, i)
+# # loop over the (unsorted) contours and draw them
+# for (i, c) in enumerate(cnts):
+#   orig = draw_contour(orig, c, i)
  
-# show the original, unsorted contour image
-cv2.imshow("Unsorted", orig)
+# # show the original, unsorted contour image
+# cv2.imshow("Unsorted", orig)
  
-# sort the contours according to the provided method
-(cnts, boundingBoxes) = sort_contours(cnts, "left-to-right")
+# # sort the contours according to the provided method
+# (cnts, boundingBoxes) = sort_contours(cnts, "left-to-right")
  
-# loop over the (now sorted) contours and draw them
-for (i, c) in enumerate(cnts):
-  draw_contour(image, c, i)
+# # loop over the (now sorted) contours and draw them
+# for (i, c) in enumerate(cnts):
+#   draw_contour(image, c, i)
  
-# show the output image
-cv2.imshow("Sorted", image)
-cv2.waitKey(0)
+# # show the output image
+# cv2.imshow("Sorted", image)
+# cv2.waitKey(0)
 # imgray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 # kernel = np.ones((5,5),np.uint8)
 # opening = cv2.morphologyEx(imgray, cv2.MORPH_OPEN, kernel)
