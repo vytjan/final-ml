@@ -6,7 +6,7 @@ from select import select
 
 # classification sets
 global samples
-samples =  np.empty((0,100))
+samples =  np.empty((0,300))
 global responses
 responses = []
 
@@ -81,7 +81,7 @@ def adjustWidth(coords, eroded, maxHeight):
 	[x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
 
 	contourWidth = x + w
-	sampleWidth = 20
+	sampleWidth = 16
 	# positions: a j N J. Default - a
 	heightPos = 1
 	while sampleWidth < 75 and x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
@@ -99,10 +99,10 @@ def adjustWidth(coords, eroded, maxHeight):
 			continue
 		# up arrow
 		elif key == 82:
-			y = y - (maxHeight - h)
+			y = y - 0.5*h
 			if(y < 0):
 				y = 0
-			h = maxHeight
+			h = 1.5*h
 			continue
 		# down arrow
 		elif key == 84:
@@ -115,10 +115,14 @@ def adjustWidth(coords, eroded, maxHeight):
 			continue
 		# if a letter:
 		elif key == 32:
-			y = y - (maxHeight - h)/2
+			y = y - h
 			if(y < 0):
 				y = 0
-			h = maxHeight
+			h = 1.5*h
+			continue
+		elif key == 13:
+			x = x+sampleWidth
+			sampleWidth = 20
 			continue
 		else:
 			if key == 226:
@@ -130,14 +134,16 @@ def adjustWidth(coords, eroded, maxHeight):
 			# submitKey = key
 			# print(chr(key))
 				print(key)
-			print(key)
-			roi = eroded[y:y+h,x:x+w]
-			roismall = cv2.resize(roi,(10,10))
-			responses.append(int(key))
-			sample = roismall.reshape((1,100))
-			samples = np.append(samples,sample,0)
-			cv2.imshow('Added to classification',cropToLetter)
+			print(chr(key))	
+			roi = eroded[y:y+h,x:x+sampleWidth]
+			roismall = cv2.resize(roi,(10,30))
+			cv2.imshow("model", roismall)
 			cv2.waitKey(0)
+			responses.append(int(key))
+			sample = roismall.reshape((1,300))
+			samples = np.append(samples,sample,0)
+			# cv2.imshow('Added to classification',cropToLetter)
+			# cv2.waitKey(0)
 			# reset start x value:
 			x = x + sampleWidth
 			sampleWidth = 20
