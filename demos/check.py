@@ -91,7 +91,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
     # y = int(y - h/2)
     # h = int(1.5*h)
     
-    while x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
+    while x+sampleWidth < contourWidth and x >= 0 and y >=0:
         # here we should find the nearest neighbours, thickering the width +2px every iteration:
         # cropToLetter = eroded[y:y+h, x:x+sampleWidth]
         # print(x+sampleWidth)
@@ -100,7 +100,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         # declare empty array:
         lettersWidth = []
 
-        while sampleWidth < 40 and x + sampleWidth < contourWidth + 5:
+        while sampleWidth < 40 and x + sampleWidth < contourWidth:
 
             # get results of the height variations of the letters:
             heightVariations = []
@@ -109,15 +109,20 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # If J, do nothing:
             heightVariations.append([y,h])
             # if l, increase below:
-            if h*1.5 < 1.1*maxHeight:
-                heightVariations.append([y,h*1.5])
+            # if h*1.5 < 1.1*maxHeight:
+            heightVariations.append([y,h*1.5])
             # if j:
-            elif y-h/2 > 0:
+            if y-h/2 > 0:
                 heightVariations.append([y-h/2, h*1.5])
             # if a:
-            elif y-h > 0 and h < maxHeight /2:
-                heightVariations.append([y-h, h*3])
+            if y-h > 0:
+                if(h*3 > 1.2*maxHeight):
+                    heightVariations.append([y-h, maxHeight])
+                else:     
+                    heightVariations.append([y-h, h*3])
+                print("weird coordinates are: ", y-h, h*3)
 
+            # print("length of heightvars: ", len(heightVariations))
             for singleCoord in heightVariations:
                 results, dists = getRoi(eroded, [x, singleCoord[0], sampleWidth, singleCoord[1]])
                 lettersWidth.append([dists[0][0], x, singleCoord[0], sampleWidth, singleCoord[1], results[0][0]])
@@ -141,7 +146,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
 
         string = chr(int(bestGuess[5]))
         cv2.putText(out,string,(int(x), int(bestGuess[2]+bestGuess[4])),0,1,(0,255,0))
-        cv2.rectangle(out,(x,y),(int(x+bestGuess[3]), int(bestGuess[2]+bestGuess[4])),(0,0,0),2)
+        cv2.rectangle(out,(x,int(bestGuess[2])),(int(x+bestGuess[3]), int(bestGuess[2]+bestGuess[4])),(0,0,0),2)
         # reset start x value:
         x = x + bestGuess[3]
 
@@ -158,7 +163,7 @@ def sortGuesses(letters):
     for single in letters:
         if single[0] < closest[0]:
             closest = single
-    print("Closest guess is: ", closest)
+    # print("Closest guess is: ", closest)
     return closest  
 
 
@@ -189,7 +194,7 @@ def removeInnerContours(eroded, bounding, im_bw):
         if (bunit[2] > 15 and bunit[3] > 15):
             newbounding.append([bunit[0], bunit[1], bunit[2], bunit[3]])
             continue
-    print(len(newbounding))
+    #   print(len(newbounding))
 
     return newbounding
 
