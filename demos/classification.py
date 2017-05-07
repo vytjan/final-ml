@@ -14,7 +14,7 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('learn_sample_one_line.png')
+	img = cv2.imread('learn_sample_new.png')
 	newx,newy = img.shape[1]/3,img.shape[0]/3     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
@@ -107,7 +107,7 @@ def adjustWidth(coords, eroded, maxHeight):
 		# down arrow
 		elif key == 84:
 			# y = y + (maxHeight - h)
-			h = maxHeight
+			h = 1.5*h
 			continue
 		# go to previous width:
 		elif key == 81:
@@ -118,7 +118,7 @@ def adjustWidth(coords, eroded, maxHeight):
 			y = y - h
 			if(y < 0):
 				y = 0
-			h = 1.5*h
+			h = 3*h
 			continue
 		elif key == 13:
 			x = x+sampleWidth
