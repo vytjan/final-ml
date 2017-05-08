@@ -14,18 +14,37 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('learn_sample_new.png')
+	img = cv2.imread('1.png')
 	newx,newy = img.shape[1]/3,img.shape[0]/3     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
 	out = newimage
 
 	img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)
-	(thresh, im_bw) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+	# img = cv2.medianBlur(img,5)
 
-	eroded = cv2.erode(im_bw,kernel,iterations = 3)
-	# cv2.imshow("Image", eroded)
-	# cv2.waitKey(0)
+	(thresh, im_bw) = cv2.threshold(img, 127, 255, cv2.THRESH_OTSU)
+	cv2.imshow("medianblur", im_bw)
+	cv2.waitKey(0)
+
+	thresh1 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
+            cv2.THRESH_BINARY,15,11)
+
+	# blur = cv2.GaussianBlur(img,(4,4),0)
+	# ret3,thresh1 = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+
+	# ret,thresh1 = cv2.threshold(img,127,255,cv2.THRESH_TRUNC)
+	cv2.imshow("threshold", thresh1)
+	cv2.waitKey(0)
+
+	kernel2 = np.ones((2,2),np.uint8)
+	dilation = cv2.dilate(thresh1,kernel,iterations = 1)
+	cv2.imshow("dilated", dilation)
+	cv2.waitKey(0)
+	eroded = cv2.erode(dilation,kernel2,iterations = 5)
+	eroded = cv2.dilate(eroded,kernel,iterations = 2)
+	cv2.imshow("eroded", eroded)
+	cv2.waitKey(0)
 	im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
 	# list of bounding rects
@@ -36,9 +55,13 @@ def testing():
 
 	for cnt in contours:
 	    [x,y,w,h] = cv2.boundingRect(cnt)
-	    if w < 20 and h<20:
+	    if (w < 20 and h<20) or (h > 180):
 	        continue
 	    bounding.append([x,y,w,h])
+	    # cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
+
+	# cv2.imshow("contours", eroded)
+	# cv2.waitKey(0)
 
 	newbounding = removeInnerContours(eroded, bounding, im_bw)
 	maxHeight = newbounding[0][3]
@@ -87,7 +110,7 @@ def adjustWidth(coords, eroded, maxHeight):
 	while sampleWidth < 75 and x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
 		# here we should find the nearest neighbours, thickering the width +2px every iteration:
 		cropToLetter = eroded[y:y+h, x:x+sampleWidth]
-		print(x+sampleWidth)
+		# print(x+sampleWidth)
 		cv2.imshow("cropped", cropToLetter)
 		key = cv2.waitKey(0)
 
