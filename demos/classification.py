@@ -14,7 +14,7 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('1.png')
+	img = cv2.imread('gb1.png')
 	newx,newy = img.shape[1]/3,img.shape[0]/3     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
@@ -51,7 +51,10 @@ def testing():
 	bounding = []
 
 	# remove the outer contour:
-	contours.pop(0)
+	# contours.pop(0)
+	# green board finding:
+	[x,y,w,h] = cv2.boundingRect(contours[0])
+	cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
 
 	for cnt in contours:
 	    [x,y,w,h] = cv2.boundingRect(cnt)
@@ -107,10 +110,29 @@ def adjustWidth(coords, eroded, maxHeight):
 	sampleWidth = 16
 	# positions: a j N J. Default - a
 	heightPos = 1
-	while sampleWidth < 75 and x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
+	while sampleWidth < 45 and x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
 		# here we should find the nearest neighbours, thickering the width +2px every iteration:
+				# here I need to put the contour of the letter to the center of the 30x10:
+		newIm, cntrs, hierarchy = cv2.findContours(eroded[y:y+h, x:x+sampleWidth],cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+		print(cntrs)
+		# cntrs.pop(0)
+		for cnt in cntrs:
+			[a,b,c,d] = cv2.boundingRect(cnt)
+    		# if (w < 20 and h<20) or (h > 180):
+        		# continue
+			print([a,b,c,d])
+    		# bounding.append([x,y,w,h])
+			rect = cv2.minAreaRect(cnt)
+			box = cv2.boxPoints(rect)
+			box = np.int0(box)
+			cv2.drawContours(roi,[box],0,(0,0,255),2)
+			# cv2.rectangle(roi,(a,b),(a+c,b+d),(0,0,0),3)
+
+			cv2.imshow("contours partly", roi)
+			cv2.waitKey(0)
+			# print(x+sampleWidth)
 		cropToLetter = eroded[y:y+h, x:x+sampleWidth]
-		# print(x+sampleWidth)
+
 		cv2.imshow("cropped", cropToLetter)
 		key = cv2.waitKey(0)
 
@@ -159,6 +181,8 @@ def adjustWidth(coords, eroded, maxHeight):
 				print(key)
 			print(chr(key))	
 			roi = eroded[y:y+h,x:x+sampleWidth]
+
+
 			roismall = cv2.resize(roi,(10,30))
 			cv2.imshow("model", roismall)
 			cv2.waitKey(0)
@@ -169,7 +193,7 @@ def adjustWidth(coords, eroded, maxHeight):
 			# cv2.waitKey(0)
 			# reset start x value:
 			x = x + sampleWidth
-			sampleWidth = 20
+			sampleWidth = 16
 			continue
 
 

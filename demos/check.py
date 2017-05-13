@@ -7,8 +7,8 @@ global responses
 # samples = np.loadtxt('generalsamplesA.data',np.float32)
 # responses = np.loadtxt('generalresponsesA.data',np.float32)
 
-samples = np.loadtxt('generalsamplesknn.data',np.float32)
-responses = np.loadtxt('generalresponsesknn.data',np.float32)
+samples = np.loadtxt('generalsamplesA.data',np.float32)
+responses = np.loadtxt('generalresponsesA.data',np.float32)
 # print(responses)
 responses = responses.reshape((responses.size,1))
 
@@ -23,17 +23,17 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('5test.png')
+    img = cv2.imread('try.png')
     # img = cv2.resize(img, (640, 360))
-    newx,newy = img.shape[1]/3,img.shape[0]/3     #new size (w,h)
+    newx,newy = img.shape[1]/3,img.shape[0]/3    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
     out = newimage
 
     img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)
-    (thresh, im_bw) = cv2.threshold(img, 127, 255, cv2.THRESH_OTSU)
-    cv2.imshow("medianblur", im_bw)
-    cv2.waitKey(0)
+    # (thresh, thresh1) = cv2.threshold(img, 127, 255, cv2.THRESH_OTSU)
+    # cv2.imshow("medianblur", im_bw)
+    # cv2.waitKey(0)
 
     thresh1 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
             cv2.THRESH_BINARY,15,11)
@@ -73,7 +73,7 @@ def testing():
     # cv2.imshow("contours", eroded)
     # cv2.waitKey(0)
 
-    newbounding = removeInnerContours(eroded, bounding, im_bw)
+    newbounding = removeInnerContours(eroded, bounding, thresh1)
 
     maxHeight = newbounding[0][3]
     for a in newbounding:
