@@ -6,6 +6,8 @@ from select import select
 
 # classification sets
 global samples
+global filename
+filename = 0
 samples =  np.empty((0,300))
 global responses
 responses = []
@@ -14,8 +16,8 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('test4.png')
-	newx,newy = img.shape[1]/3,img.shape[0]/3     #new size (w,h)
+	img = cv2.imread('mini_learn2.png')
+	newx,newy = img.shape[1],img.shape[0]     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
 	out = newimage
@@ -28,7 +30,7 @@ def testing():
 	# cv2.waitKey(0) 
 
 	thresh1 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-            cv2.THRESH_BINARY,9,16)
+            cv2.THRESH_BINARY,15,24)
 
 	# blur = cv2.GaussianBlur(img,(4,4),0)
 	# ret3,thresh1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
@@ -56,7 +58,7 @@ def testing():
 
 	for cnt in contours:
 	    [x,y,w,h] = cv2.boundingRect(cnt)
-	    if (w < 20 and h<20) or (h > 180):
+	    if (w <20 and h<20) or (h > 180):
 	        continue
 	    bounding.append([x,y,w,h])
 	    # cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
@@ -101,14 +103,17 @@ def testing():
 
 # extract the words into letters:
 def adjustWidth(coords, eroded, maxHeight):
+	global filename
 	global samples
 	[x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
-
+	initx = x
+	inity = y
+	inith = h
 	contourWidth = x + w
 	sampleWidth = 16
 	# positions: a j N J. Default - a
 	heightPos = 1
-	while sampleWidth < 45 and x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
+	while sampleWidth < 50 and x+sampleWidth < contourWidth + 5 and x >= 0 and y >=0:
 		# here we should find the nearest neighbours, thickering the width +2px every iteration:
 				# here I need to put the contour of the letter to the center of the 30x10:
 		
@@ -117,8 +122,36 @@ def adjustWidth(coords, eroded, maxHeight):
 		cv2.imshow("cropped", cropToLetter)
 		key = cv2.waitKey(0)
 
-
-		if key == 27:
+		# * 42; - 45
+		if key == 190:
+			# reset the letter:
+			print("before delete: ", len(samples))
+			samples[:-1]
+			print("after delete: ", len(samples))
+			# if x - sampleWidth < initx:
+				# x = initx
+			# else:
+				# x = x - sampleWidth
+			# x = initx
+			# y = inity
+			# h = inith
+			# sampleWidth = 16
+			continue
+		elif key == 91:
+			h -= 1
+			y-=1
+			continue
+		elif key == 93:
+			h+=1
+			continue
+		elif key == 39:
+			h += 1
+			y+=1
+			continue
+		elif key == 92:
+			h-=1
+			continue
+		elif key == 27:
 			sys.exit()
 		elif key == 83:
 			sampleWidth += 2
@@ -137,7 +170,8 @@ def adjustWidth(coords, eroded, maxHeight):
 			continue
 		# go to previous width:
 		elif key == 81:
-			sampleWidth -= 2
+			if x - 2 > 0:
+				x -= 2
 			continue
 		# if a letter:
 		elif key == 32:
@@ -157,46 +191,52 @@ def adjustWidth(coords, eroded, maxHeight):
 			else:
 				# tempImage = eroded[y:y+h, x:x+sampleWidth]
 				print(key)
-		# cntrs.pop(0)
-		# for cnt in cntrs:
-		# 	[a,b,c,d] = cv2.boundingRect(cnt)
-  #   		# if (w < 20 and h<20) or (h > 180):
-  #       		# continue
-		# 	print("bounding rectangle: ",[a,b,c,d])
-  #   		# bounding.append([x,y,w,h])
-			# rect = cv2.minAreaRect(cntrs[0])
-			# box = cv2.boxPoints(rect)
-			# box = np.int0(box)
-			# print("box is: ", box)
-			# cv2.drawContours(cropToLetter,[box],0,(0,0,255),1)
-			# cv2.rectangle(tempImage,(a,b),(a+c,b+d),(0,0,0),3)
-
-		# 	cv2.imshow("contours partly", newIm)
-		# 	cv2.waitKey(0)
-		# 	# print(x+sampleWidth)
-			# [a,b,c,d] = cv2.boundingRect(cntrs[0])
-			# cv2.rectangle(cropToLetter,(a,b),(a+c,b+d),(0,0,0),3)
-			# s = input("Write a capital letter ")
-			# print(s)
-			# submitKey = key
-			# print(chr(key))
 				
-			print(chr(key))	
-			# roi = eroded[y:b+d,x:a+c]
-			bordersize=1
-			border=cv2.copyMakeBorder(cropToLetter, top=bordersize, bottom=bordersize, left=bordersize, right=bordersize, borderType= cv2.BORDER_CONSTANT, value=[255,255,255] )
-			newIm, cntrs, hierarchy = cv2.findContours(border,cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-			cntrs.pop(0)
-			c = max(cntrs, key = cv2.contourArea)
-			print("length of cnts",len(cntrs))
-			[a,b,c,d] = cv2.boundingRect(c)
-			cv2.rectangle(border,(a,b),(a+c,b+d),(0,0,0),3)
-			cv2.imshow("contours", border)
-			cv2.waitKey(0)
-			# roi = eroded[y:y+h,x:x+sampleWidth]
-
-
+			print(chr(key))
+			roi = eroded[y:y+h,x:x+sampleWidth]
 			roismall = cv2.resize(roi,(10,30))
+
+			# save the image to appropriate class
+			# tik pridet nosines dar 
+			print('/letters/'+ chr(key) + '/' + str(filename) + '.png')
+			# cv2.imwrie('/letters/'+ key + '/' + filename.toString() + '.png', roismall)
+			filename +=1 
+			# roi = eroded[y:y+h, x:x+sampleWidth]
+			# bordersize=1
+			# border=cv2.copyMakeBorder(roi, top=bordersize, bottom=bordersize, left=bordersize, right=bordersize, borderType= cv2.BORDER_CONSTANT, value=[255,255,255] )
+			# newIm, cntrs, hierarchy = cv2.findContours(border,cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+			# cntrs.pop(0)
+			# # get new dimensions:
+			# # initial values:
+			# # e = max(cntrs, key = cv2.boundingRect[0])
+			# # print("max x is: ",e)
+			# [a,b,c,d] = [0,0,0,0]
+			# for cntr in cntrs:
+			# 	[a1,b1,c1,d1] = cv2.boundingRect(cntr)
+			# 	if a1 < a:
+			# 		a = a1
+			# 	elif b1 < b:
+			# 		b = b1
+			# 	elif c1 > c:
+			# 		c += c1
+			# 	elif d1 > d:
+			# 		d += d1
+			# print("other option max: ", [a,b,c,d])
+			# c = max(cntrs, key = cv2.contourArea)
+			# print("length of cnts",len(cntrs))
+			 # put the contour in the middleof a picture:
+
+			# [a,b,c,d] = cv2.boundingRect(c)
+			
+			# cv2.rectangle(border,(a,b),(a+c,b+d),(0,0,0),3)
+			# cv2.imshow("contours", border)
+			# cv2.waitKey(0)
+
+
+			# here I need to center the contours:
+			# centered = centerContours(roi)
+
+		
 			cv2.imshow("model", roismall)
 			cv2.waitKey(0)
 			responses.append(int(key))

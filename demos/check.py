@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import tensorflow as tf
 
 #######   training part    ###############
 global samples
@@ -23,9 +24,9 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('try.png')
+    img = cv2.imread('mini_test.png')
     # img = cv2.resize(img, (640, 360))
-    newx,newy = img.shape[1]/3,img.shape[0]/3    #new size (w,h)
+    newx,newy = img.shape[1],img.shape[0]    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
     out = newimage
@@ -196,7 +197,8 @@ def getRoi(eroded, coords):
     roismall = cv2.resize(roi,(10,30))
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 3)
+    print("distances: ",dists)
     return results, dists
 
 
@@ -218,4 +220,4 @@ def removeInnerContours(eroded, bounding, im_bw):
 
     return newbounding
 
-testing()
+testing()   
