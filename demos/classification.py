@@ -17,7 +17,7 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('learn32.png')
+	img = cv2.imread('learn41.png')
 	newx,newy = img.shape[1],img.shape[0]     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
