@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import sys
+import os
 from select import select
 
 
@@ -16,7 +17,7 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('mini_learn2.png')
+	img = cv2.imread('learn32.png')
 	newx,newy = img.shape[1],img.shape[0]     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
@@ -188,6 +189,10 @@ def adjustWidth(coords, eroded, maxHeight):
 			if key == 226:
 				key = chr(cv2.waitKey(0))
 				key = ord(key.upper())
+				# lietuviškos didžiosios raidės:
+				# if key == 49 or key == 50 or key == 51 or key == 52 or key == 53 or key == 54 or key == 55 or key == 56 or key == 61:
+					# key = key * 10
+					# print(key)
 			else:
 				# tempImage = eroded[y:y+h, x:x+sampleWidth]
 				print(key)
@@ -197,9 +202,13 @@ def adjustWidth(coords, eroded, maxHeight):
 			roismall = cv2.resize(roi,(10,30))
 
 			# save the image to appropriate class
-			# tik pridet nosines dar 
-			print('/letters/'+ chr(key) + '/' + str(filename) + '.png')
-			# cv2.imwrie('/letters/'+ key + '/' + filename.toString() + '.png', roismall)
+			# tik pridet nosines dar 	
+			print(os.path.join('letters', str(key) + str(filename) + '.png'))
+			if not os.path.exists(os.path.join('letters', str(key))) :
+				print("create a new directory: ", str(key))
+				os.mkdir(os.path.join('letters', str(key)))
+			print(os.path.join('letters', str(key), str(filename) + '.png'))
+			cv2.imwrite(os.path.join('letters', str(key), str(filename) + '.png'), roismall)
 			filename +=1 
 			# roi = eroded[y:y+h, x:x+sampleWidth]
 			# bordersize=1

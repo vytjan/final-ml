@@ -8,8 +8,8 @@ global responses
 # samples = np.loadtxt('generalsamplesA.data',np.float32)
 # responses = np.loadtxt('generalresponsesA.data',np.float32)
 
-samples = np.loadtxt('generalsamplesA.data',np.float32)
-responses = np.loadtxt('generalresponsesA.data',np.float32)
+samples = np.loadtxt('generalsamplesOld.data',np.float32)
+responses = np.loadtxt('generalresponsesOld.data',np.float32)
 # print(responses)
 responses = responses.reshape((responses.size,1))
 
