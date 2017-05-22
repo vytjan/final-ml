@@ -11,3 +11,5 @@ THE PLAN:
 learn31.png
 learn32.png
 learn41.png
+learn42.png
+learn51.png
