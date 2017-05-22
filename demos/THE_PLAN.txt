@@ -20,3 +20,6 @@ learn71.png
 learn72.png
 learn81.png
 learn82.png
+learn11.png
+learn12.png
+learn2.png
