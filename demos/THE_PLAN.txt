@@ -15,3 +15,6 @@ learn42.png
 learn51.png
 learn52.png
 learn61.png
+learn62.png
+learn71.png
+learn72.png
