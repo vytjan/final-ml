@@ -2,13 +2,14 @@ import cv2
 import numpy as np
 import sys
 import os
+import time
 from select import select
 
 
 # classification sets
 global samples
-global filename
-filename = 0
+# global filename
+# filename = 0
 samples =  np.empty((0,300))
 global responses
 responses = []
@@ -17,7 +18,7 @@ def testing():
 	global responses
 	global samples
 	kernel = np.ones((2,2),np.uint8)
-	img = cv2.imread('learn51.png')
+	img = cv2.imread('learn52.png')
 	newx,newy = img.shape[1],img.shape[0]     #new size (w,h)
 	print("Rescaled, new dimensions: ", newx, newy)
 	newimage = cv2.resize(img,(int(newx), int(newy)))
@@ -104,7 +105,7 @@ def testing():
 
 # extract the words into letters:
 def adjustWidth(coords, eroded, maxHeight):
-	global filename
+	# global filename
 	global samples
 	[x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
 	initx = x
@@ -202,14 +203,15 @@ def adjustWidth(coords, eroded, maxHeight):
 			roismall = cv2.resize(roi,(10,30))
 
 			# save the image to appropriate class
-			# tik pridet nosines dar 	
-			print(os.path.join('letters', str(key) + str(filename) + '.png'))
+			# tik pridet nosines dar
+			filename = str(round(time.time())) 	
+			print(os.path.join('letters', str(key) + filename + '.png'))
 			if not os.path.exists(os.path.join('letters', str(key))) :
 				print("create a new directory: ", str(key))
 				os.mkdir(os.path.join('letters', str(key)))
-			print(os.path.join('letters', str(key), str(filename) + '.png'))
-			cv2.imwrite(os.path.join('letters', str(key), str(filename) + '.png'), roismall)
-			filename +=1 
+			print(os.path.join('letters', str(key), filename + '.png'))
+			cv2.imwrite(os.path.join('letters', str(key), filename + '.png'), roismall)
+			# filename +=1 
 			# roi = eroded[y:y+h, x:x+sampleWidth]
 			# bordersize=1
 			# border=cv2.copyMakeBorder(roi, top=bordersize, bottom=bordersize, left=bordersize, right=bordersize, borderType= cv2.BORDER_CONSTANT, value=[255,255,255] )
