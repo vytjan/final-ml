@@ -18,3 +18,5 @@ learn61.png
 learn62.png
 learn71.png
 learn72.png
+learn81.png
+learn82.png
