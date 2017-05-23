@@ -16,7 +16,7 @@ dictionary = codecs.open("dictionary.dat", encoding="utf-8").read().splitlines()
 # arr = numpy.frombuffer(s.replace("\n", ""), dtype="<U2")
 # print(arr)
 # dictionary = np.loadtxt('dictionary.dat', delimiter="\n")
-print(dictionary)
+print("".join(dictionary))
 print(len(dictionary))
 
 something = difflib.get_close_matches('o6ia', dictionary)

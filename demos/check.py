@@ -24,7 +24,7 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('learn11.png')
+    img = cv2.imread('learn12.png')
     # img = cv2.resize(img, (640, 360))
     newx,newy = img.shape[1],img.shape[0]    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
@@ -48,7 +48,7 @@ def testing():
 
     kernel2 = np.ones((2,2),np.uint8)
     eroded = cv2.erode(thresh1,kernel2,iterations = 3)
-    # dilation = cv2.dilate(thresh1,kernel,iterations = 1)
+    dilation = cv2.dilate(thresh1,kernel,iterations = 1)
     # cv2.imshow("dilated", dilation)
     # cv2.waitKey(0)
     # eroded = cv2.erode(dilation,kernel2,iterations = 3)
@@ -106,6 +106,7 @@ def testing():
 
 # extract the words into letters:
 def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
+    global dictionary
     textValue = []
     [x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
 
@@ -116,10 +117,6 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
     print("new contour is iterated:          ")    
     while x+sampleWidth < contourWidth and x >= 0 and y >=0:
         # here we should find the nearest neighbours, thickering the width +2px every iteration:
-        # cropToLetter = eroded[y:y+h, x:x+sampleWidth]
-        # print(x+sampleWidth)
-        # cv2.imshow("cropped", cropToLetter)
-        # key = cv2.waitKey(0)
         # declare empty array:
         lettersWidth = []
         while sampleWidth < 40 and x + sampleWidth < contourWidth:
@@ -134,11 +131,12 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # if h*1.5 < 85:
             height = h
             while height < 70:
+                print(height)
                 heightVariations.append([y,height])
-                height += 4
+                height += 10
                 if y-h/2 > 0 and h < 50:
                     heightVariations.append([y-h/2, height])
-                elif y-h > 0 and h < 50:
+                elif y-h > 0 and h < 40:
                     heightVariations.append([y-h, height])
                 # height += 5
                 # heightVariations.append([y,h*1.1])
@@ -165,10 +163,10 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             for singleCoord in heightVariations:
                 # print("new iteration of getting roi: \n")
                 xplus = 0
-                while xplus < 5:
-                    results, dists = getRoi(eroded, [x + xplus, singleCoord[0], sampleWidth, singleCoord[1]])
-                    lettersWidth.append([dists, x + xplus, singleCoord[0], sampleWidth, singleCoord[1], results[0][0]])
-                    xplus += 1
+                # while xplus < 7:
+                results, dists = getRoi(eroded, [x, singleCoord[0], sampleWidth, singleCoord[1]])
+                lettersWidth.append([dists, x, singleCoord[0], sampleWidth, singleCoord[1], results[0][0]])
+                    # xplus += 2
             # Get needed roi:
         
             # print("retrieved value is: ", retval)
@@ -178,7 +176,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # string = chr(int(results[0][0]))
             # cv2.imshow("cropped", cropToLetter)
             # key = cv2.waitKey(0)
-            sampleWidth = sampleWidth + 1
+            sampleWidth = sampleWidth + 2
 
         # here I decide which is the best 'guess':
         # print("length is: ", len(lettersWidth))
@@ -198,7 +196,11 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         # print(lettersWidth)
         continue
 
-    print(textValue)
+    # # get the closest match of the word:
+    word = "".join(textValue)
+    print(word)
+    # something = difflib.get_close_matches(word, dictionary) 
+    # print(something)
     cv2.imshow('im',eroded)
     cv2.imshow('out',out)
     cv2.waitKey(0)
@@ -224,7 +226,7 @@ def getRoi(eroded, coords):
     # cv2.waitKey(0)
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 8)
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 20)
     # print("distances: ",dists)
     return results, dists
 
