@@ -200,7 +200,7 @@ def adjustWidth(coords, eroded, maxHeight):
 				
 			print(chr(key))
 			roi = eroded[y:y+h,x:x+sampleWidth]
-			print("roi shape is: ", roi.shape)
+			
 			roismall = cv2.resize(roi,(10,30))
 
 			# save the image to appropriate class
