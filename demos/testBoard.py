@@ -25,7 +25,7 @@ def testing():
 
     img = cv2.imread('gb3.png')
     # img = cv2.resize(img, (640, 360))
-    newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #new size (w,h)
+    newx,newy = img.shape[1]/4,img.shape[0]/4    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
     out = newimage
@@ -33,7 +33,7 @@ def testing():
     img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)
     # (thresh, thresh1) = cv2.threshold(img, 127, 255, cv2.THRESH_OTSU)
     # binary threshold works for the greenboard.
-    (thresh, thresh1) = cv2.threshold(img, 127,255,cv2.THRESH_BINARY)
+    (thresh, thresh1) = cv2.threshold(img, 110,255,cv2.THRESH_BINARY)
     cv2.imshow("inverted", thresh1)
     cv2.waitKey(0)
 
@@ -49,14 +49,22 @@ def testing():
     contours.pop(0)
     [x,y,w,h] = cv2.boundingRect(c)
     out = newimage[y:y+h, x:x+w]
+    kernel2 = np.ones((2,2),np.uint8)
+    # dilation = cv2.dilate(thresh1,kernel,iterations = 1)
+    # cv2.imshow("dilated", dilation)
+    # cv2.waitKey(0)
+    eroded = cv2.dilate(thresh1,kernel2,iterations = 1)
+    cv2.imshow("eroded first", eroded)
+    cv2.waitKey(0)
     newImage = thresh1[y:y+h, x:x+w]
     # cv2.rectangle(newImage,(x,y),(x+w,y+h),(0,0,0),2)
     # (thresh, thresh1) = cv2.threshold(newImage, 127,255,cv2.THRESH_BINARY_INV)
-    th = cv2.bitwise_not(newImage)
+    # th = cv2.bitwise_not(newImage)
+    th = cv2.bitwise_not(eroded)
     thresh1 = cv2.adaptiveThreshold(th,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-    	cv2.THRESH_BINARY,5,5)
-    cv2.imshow("inverted new image", thresh1)
-    cv2.waitKey(0)
+    	cv2.THRESH_BINARY,11,11)
+    # cv2.imshow("inverted new image", thresh1)
+    # cv2.waitKey(0)
     # cv2.imshow("contour", newImage)
     # cv2.waitKey(0)  
 
@@ -65,7 +73,7 @@ def testing():
     #     if (w < 20 and h<20) or (h > 180):
     #         continue
     #     # bounding.append([x,y,w,h])
-    #     cv2.rectangle(thresh1,(x,y),(x+w,y+h),(0,0,0),2)
+    cv2.rectangle(thresh1,(x,y),(x+w,y+h),(0,0,0),2)
 
     # cv2.imshow("find contours", thresh1)
     # cv2.waitKey(0)
@@ -80,8 +88,8 @@ def testing():
     # dilation = cv2.dilate(thresh1,kernel,iterations = 1)
     # cv2.imshow("dilated", dilation)
     # cv2.waitKey(0)
-    eroded = cv2.erode(thresh1,kernel2,iterations = 4)
-    # eroded = cv2.dilate(eroded,kernel,iterations = 2)
+    eroded = cv2.erode(thresh1,kernel2,iterations = 2)
+    # eroded = cv2.dilate(eroded,kernel,iterations = 1)
     cv2.imshow("eroded", eroded)
     cv2.waitKey(0)
     im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
@@ -104,7 +112,7 @@ def testing():
         if (w < 20 and h<20) or (h > 180):
             continue
         bounding.append([x,y,w,h])
-        cv2.rectangle(out,(x,y),(x+w,y+h),(0,0,0),2)
+        # cv2.rectangle(out,(x,y),(x+w,y+h),(0,0,0),2)
 
     cv2.imshow("contours", eroded)
     cv2.waitKey(0)
@@ -144,7 +152,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
     [x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
 
     contourWidth = x + w
-    sampleWidth = 12
+    sampleWidth = 16
     # positions: a j N J. Default - a
     print("max height is: ", maxHeight)
     
@@ -180,7 +188,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             print("length of heightvars: ", len(heightVariations))
             for singleCoord in heightVariations:
                 results, dists = getRoi(eroded, [x, singleCoord[0], sampleWidth, singleCoord[1]])
-                lettersWidth.append([dists[0][0], x, singleCoord[0], sampleWidth, singleCoord[1], results[0][0]])
+                lettersWidth.append([dists, x, singleCoord[0], sampleWidth, singleCoord[1], results[0][0]])
 
             # Get needed roi:
         
@@ -206,7 +214,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         # reset start x value:
         x = x + bestGuess[3]
 
-        sampleWidth = 12
+        sampleWidth = 16
         # print(lettersWidth)
         continue
 
@@ -217,9 +225,12 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
 def sortGuesses(letters):
     closest = letters[0]
     for single in letters:
-        if single[0] < closest[0]:
-            closest = single
-    # print("Closest guess is: ", closest)
+    	if np.sum(single[0]) < np.sum(closest[0]):
+    		closest = single
+    	# print("single is: ",single)
+    	# if single[0] < closest[0]:
+        	# closest = single
+    # print("Closest guess is: ", int(closest))
     return closest  
 
 
@@ -232,7 +243,8 @@ def getRoi(eroded, coords):
     roismall = cv2.resize(roi,(10,30))
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 3)
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 5)
+    # print("distances are; ", dists)
     return results, dists
 
 

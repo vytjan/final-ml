@@ -110,7 +110,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
     [x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
 
     contourWidth = x + w
-    sampleWidth = 12
+    sampleWidth = 16
     # positions: a j N J. Default - a
     print("max height is: ", maxHeight)
     
@@ -172,7 +172,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         # reset start x value:
         x = x + bestGuess[3]
 
-        sampleWidth = 12
+        sampleWidth = 16
         # print(lettersWidth)
         continue
 
