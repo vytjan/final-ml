@@ -232,7 +232,7 @@ def getRoi(eroded, coords):
     roismall = cv2.resize(roi,(10,30))
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 3)
     return results, dists
 
 

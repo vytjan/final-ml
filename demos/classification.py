@@ -200,6 +200,7 @@ def adjustWidth(coords, eroded, maxHeight):
 				
 			print(chr(key))
 			roi = eroded[y:y+h,x:x+sampleWidth]
+			print("roi shape is: ", roi.shape)
 			roismall = cv2.resize(roi,(10,30))
 
 			# save the image to appropriate class
@@ -251,6 +252,7 @@ def adjustWidth(coords, eroded, maxHeight):
 			cv2.imshow("model", roismall)
 			cv2.waitKey(0)
 			responses.append(int(key))
+			print("shape is: ", roismall.shape)
 			sample = roismall.reshape((1,300))
 			samples = np.append(samples,sample,0)
 			# cv2.imshow('Added to classification',cropToLetter)

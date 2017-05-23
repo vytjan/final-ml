@@ -8,8 +8,8 @@ global responses
 # samples = np.loadtxt('generalsamplesA.data',np.float32)
 # responses = np.loadtxt('generalresponsesA.data',np.float32)
 
-samples = np.loadtxt('generalsamplesOld.data',np.float32)
-responses = np.loadtxt('generalresponsesOld.data',np.float32)
+samples = np.loadtxt('generalsamplesA.data',np.float32)
+responses = np.loadtxt('generalresponsesA.data',np.float32)
 # print(responses)
 responses = responses.reshape((responses.size,1))
 
@@ -24,7 +24,7 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('mini_test.png')
+    img = cv2.imread('learn11.png')
     # img = cv2.resize(img, (640, 360))
     newx,newy = img.shape[1],img.shape[0]    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
@@ -37,7 +37,7 @@ def testing():
     # cv2.waitKey(0)
 
     thresh1 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-            cv2.THRESH_BINARY,15,11)
+            cv2.THRESH_BINARY,15,24)
 
     # blur = cv2.GaussianBlur(img,(4,4),0)
     # ret3,thresh1 = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
@@ -47,11 +47,12 @@ def testing():
     cv2.waitKey(0)
 
     kernel2 = np.ones((2,2),np.uint8)
-    dilation = cv2.dilate(thresh1,kernel,iterations = 1)
-    cv2.imshow("dilated", dilation)
-    cv2.waitKey(0)
-    eroded = cv2.erode(dilation,kernel2,iterations = 5)
-    eroded = cv2.dilate(eroded,kernel,iterations = 2)
+    eroded = cv2.erode(thresh1,kernel2,iterations = 2)
+    # dilation = cv2.dilate(thresh1,kernel,iterations = 1)
+    # cv2.imshow("dilated", dilation)
+    # cv2.waitKey(0)
+    # eroded = cv2.erode(dilation,kernel2,iterations = 3)
+    # eroded = cv2.dilate(eroded,kernel,iterations = 2)
     cv2.imshow("eroded", eroded)
     cv2.waitKey(0)
     im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
@@ -197,7 +198,7 @@ def getRoi(eroded, coords):
     roismall = cv2.resize(roi,(10,30))
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 3)
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 5)
     print("distances: ",dists)
     return results, dists
 
