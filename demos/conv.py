@@ -29,6 +29,8 @@ from tensorflow.examples.tutorials.mnist import input_data
 #import data
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
+
+tf.reset_default_graph()
 sess = tf.InteractiveSession()
 
 # Create the model

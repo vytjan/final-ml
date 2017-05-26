@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import difflib
 import codecs
+# import cnnpredict
 
 #######   training part    ###############
 global samples
@@ -173,15 +174,15 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # if l, increase below:
             # if h*1.5 < 85:
             height = h
-            while height < maxHeight:
+            while height < 80:
                 # print(height)
                 heightVariations.append([y,height])
                 # height += 5
-                if y-h/2 > 0 and h < maxHeight:
-                    heightVariations.append([y-h/2, height])
-                elif y-h > 0 and h < maxHeight:
-                    heightVariations.append([y-h, height])
-                height += 10
+                if y-h/2 > 0 and h < 80:
+                    heightVariations.append([y-height/2, height])
+                elif y-h > 0 and h < 80:
+                    heightVariations.append([y-height, height])
+                height += 1
                 # heightVariations.append([y,h*1.1])
             # if j:
             # if y-h/2 > 0 and h*1.5 < 1.1*maxHeight:
@@ -202,7 +203,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             #         height += 5
                 # heightVariations.append([y-h, h*1.5])
 
-            # print("length of heightvars: ", len(heightVariations))
+            print("length of heightvars: ", len(heightVariations))
             for singleCoord in heightVariations:
                 # print("new iteration of getting roi: \n")
                 xplus = 0
@@ -219,8 +220,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # string = chr(int(results[0][0]))
             # cv2.imshow("cropped", cropToLetter)
             # key = cv2.waitKey(0)
-            sampleWidth = sampleWidth + 2
-
+            sampleWidth = sampleWidth + 1
         # here I decide which is the best 'guess':
         # print("length is: ", len(lettersWidth))
         if len(lettersWidth) > 0:
@@ -233,10 +233,10 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         cv2.putText(out,string,(int(bestGuess[1]), int(bestGuess[2]+bestGuess[4])),0,1,(0,0,255))
         cv2.rectangle(out,(int(bestGuess[1]),int(bestGuess[2])),(int(x+bestGuess[3]), int(bestGuess[2]+bestGuess[4])),(0,0,0),1)
         # reset start x value:
-        x = x + bestGuess[3]
+        x = x + bestGuess[3] - 3
 
         sampleWidth = 13
-        # print(lettersWidth)
+        # print(lettersWidth)	
         continue
 
 	# # get the closest match of the word:
@@ -274,18 +274,22 @@ def getRoi(eroded, coords):
     # cv2.imshow("roismall", roismall)
     # cv2.waitKey(0)
     roismall = roismall.reshape((1,300))
+    # print(roismall[0])
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 3)
-    print("distances are; ", dists)
-    # print("results are: ", chr(int(results[0][0])))
-    print("results are: ", results)
-    for single in neigh_resp:
-    	random = []
-    	for singleLetters in single:
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 25)
+    # print("distances are; ", dists)
+    print("knn results are: ", chr(int(results[0][0])))
+
+    # reply = testcnn.main(roismall[0])
+    # print(reply)
+    # print("results are: ", results)
+    # for single in neigh_resp:
+    	# random = []
+    	# for singleLetters in single:
     		# jei daugiau nei 5, tada pridedam:
-    		random.append(chr(int(singleLetters)))
+    		# random.append(chr(int(singleLetters)))
     		# print(chr(int(singleLetters)))
-    	print(random)
+    	# print(random)
     # print("neighour response is: ",neigh_resp)
     # print("ret value is: ", retval)
     return results, dists

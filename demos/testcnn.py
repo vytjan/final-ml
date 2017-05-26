@@ -110,46 +110,33 @@ def predictint(imvalue):
     sess.run(init_op)
     saver.restore(sess, "./model2.ckpt")
     #print ("Model restored.")
-   
-    prediction=tf.argmax(y_conv,1)
-    return prediction.eval(feed_dict={x: [imvalue],keep_prob: 1.0}, session=sess)
+    
+    # prediction=tf.argmax(y_conv,1)
+    # return prediction.eval(feed_dict={x: [imvalue],keep_prob: 1.0}, session=sess)
 
 
+
+    # prediction=tf.argmax(y_conv,1)
+    feed_dict = {x: [imvalue],keep_prob: 1.0}
+    classification = sess.run(y_conv, feed_dict)
+    # classification = prediction.eval(feed_dict={x: [imvalue],keep_prob: 1.0}, session=sess)
+    print(classification.argmax(axis=1))
+    reply = []
+    reply.append(classification.argmax(axis=1))
+    reply.append(np.amax(classification, axis=1)) 
+    # print(classification)
+    # print(len(classification[0]))
+    print(np.amax(classification, axis=1))
+    # print(classification[0])
+    return reply
 
 
 def imageprepare(argv):
-  """
-  This function returns the pixel values.
-  The imput is a png file location.
-  """
+
   im = Image.open(argv).convert('L')
-  width = float(im.size[0])
-  height = float(im.size[1])
-  # newImage = Image.new('L', (10, 30), (255)) #creates white canvas of 28x28 pixels
-  
-  # if width > height: #check which dimension is bigger
-  #     #Width is bigger. Width becomes 20 pixels.
-  #     nheight = int(round((20.0/width*height),0)) #resize height according to ratio width
-  #     if (nheigth == 0): #rare case but minimum is 1 pixel
-  #         nheigth = 1  
-  #     # resize and sharpen
-  #     img = im.resize((20,nheight), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-  #     wtop = int(round(((28 - nheight)/2),0)) #caculate horizontal pozition
-  #     newImage.paste(img, (4, wtop)) #paste resized image on white canvas
-  # else:
-  #     #Height is bigger. Heigth becomes 20 pixels. 
-  #     nwidth = int(round((20.0/height*width),0)) #resize width according to ratio height
-  #     if (nwidth == 0): #rare case but minimum is 1 pixel
-  #         nwidth = 1
-  #      # resize and sharpen
-  #     img = im.resize((nwidth,20), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-  #     wleft = int(round(((28 - nwidth)/2),0)) #caculate vertical pozition
-  #     newImage.paste(img, (wleft, 4)) #paste resized image on white canvas
-  
-  #newImage.save("sample.png")
 
   tv = list(im.getdata()) #get pixel values
-  # print(tv)
+  # print(image)
   # data = numpy.empty((0,300))
   # sample = tv.reshape((1,300))
    # = np.append(samples,sample,0)
@@ -160,12 +147,13 @@ def imageprepare(argv):
   data = np.array(tva)
   print(data)
   newData = 1 - data
+  proceeded = newData
   # newData = np.invert(data)
   # print(data)
-  plt.imshow(newData.reshape(30, 10), cmap=plt.cm.binary)
+  plt.imshow(proceeded.reshape(30, 10), cmap=plt.cm.binary)
   plt.show() 
   # print(tva)
-  return newData
+  return proceeded
 
 
 def main(argv):
@@ -174,8 +162,9 @@ def main(argv):
   """
   imvalue = imageprepare(argv)
   predint = predictint(imvalue)
-  print(predint)
-  print (predint[0]) #first value in list
+  return predint
+  # print(predint)
+  # print (predint[0]) #first value in list
     
 if __name__ == "__main__":
   main(sys.argv[1])

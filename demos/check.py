@@ -132,7 +132,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             height = h
             while height < 70:
                 print(height)
-                heightVariations.append([y,height])
+            heightVariations.append([y,height])
                 height += 10
                 if y-h/2 > 0 and h < 50:
                     heightVariations.append([y-h/2, height])
