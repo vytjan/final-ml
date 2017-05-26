@@ -53,6 +53,7 @@ feed_dict = {x: [img]}
 classification = sess.run(y, feed_dict)
 print(classification.argmax(axis=1))
 print(classification)
+print(len(classification[0]))
 print(numpy.amax(classification, axis=1))	
 # temp = numpy.argpartition(-classification, classification.argmax(axis=1))
 # result_args = -temp
