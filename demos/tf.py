@@ -2,6 +2,9 @@ import tensorflow as tf
 import cv2
 import numpy as np
 
+from tensorflow.examples.tutorials.mnist import input_data
+# mnist = input_data.read_data_sets("MNIST_data/", one_hot=True
+
 #######   training part    ###############
 global samples
 global responses
@@ -9,12 +12,32 @@ global responses
 samples = np.loadtxt('generalsamplesA.data',np.float32)
 responses = np.loadtxt('generalresponsesA.data',np.float32)
 responses = responses.reshape((responses.size,1))
+# batch_xs = np.reshape(batch_xs, (-1, 9216))
 
+samples = np.reshape(samples, (-,1300))
+# print(image)
+
+# mnist = input_data.read_data_sets(samples, one_hot=True)
 x = tf.placeholder(tf.float32, [None, 300])
-W = tf.Variable(tf.zeros([300, 61]))
-b = tf.Variable(tf.zeros([61]))
+W = tf.Variable(tf.zeros([300, 62]))
+b = tf.Variable(tf.zeros([62]))
 y = tf.nn.softmax(tf.matmul(x, W) + b)
-y_ = tf.placeholder(tf.float32, [None, 61])
+y_ = tf.placeholder(tf.float32, [None, 62])
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+
+sess = tf.InteractiveSession()
+tf.global_variables_initializer().run()
+
+for _ in range(1000):
+  # batch_xs, batch_ys = mnist.train.next_batch(100)
+  sess.run(train_step, feed_dict={x: samples, y_: responses})
+
+correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+
+
 
 def testing():
 

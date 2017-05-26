@@ -41,7 +41,7 @@ def testing():
 	cv2.imshow("threshold", thresh1)
 	cv2.waitKey(0)
 
-	kernel2 = np.ones((2,2),np.uint8)
+	kernel2 = np.ones((2,2),np.uint8)		
 	# dilation = cv2.dilate(thresh1,kernel,iterations = 1)
 	# cv2.imshow("dilated", dilation)
 	# cv2.waitKey(0)
