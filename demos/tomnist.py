@@ -65,13 +65,13 @@ for name in Names:
 	data_image = header + data_image
 	print(len(data_label))
 
-	# output_file = open(name[1]+'-images-idx3-ubyte', 'wb')
-	# data_image.tofile(output_file)
-	# output_file.close()
+	output_file = open(name[1]+'-images-idx3-ubyte', 'wb')
+	data_image.tofile(output_file)
+	output_file.close()
 
-	# output_file = open(name[1]+'-labels-idx1-ubyte', 'wb')
-	# data_label.tofile(output_file)
-	# output_file.close()
+	output_file = open(name[1]+'-labels-idx1-ubyte', 'wb')
+	data_label.tofile(output_file)
+	output_file.close()
 
 # gzip resulting files
 

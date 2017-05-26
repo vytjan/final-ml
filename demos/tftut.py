@@ -6,12 +6,12 @@ mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 import tensorflow as tf
 sess = tf.InteractiveSession()
 
-W = tf.Variable(tf.zeros([300,61]))
-b = tf.Variable(tf.zeros([61]))
+W = tf.Variable(tf.zeros([300,62]))
+b = tf.Variable(tf.zeros([62]))
 
 x = tf.placeholder(tf.float32, shape=[None, 300])
 y = tf.matmul(x,W) + b
-y_ = tf.placeholder(tf.float32, shape=[None, 61])
+y_ = tf.placeholder(tf.float32, shape=[None, 62])
 
 
 
@@ -49,13 +49,47 @@ img = mnist.test.images[num]
 # print(img)
 
 
+feed_dict = {x: [img]}
+classification = sess.run(y, feed_dict)
+print(classification.argmax(axis=1))
+print(classification)
+print(numpy.amax(classification, axis=1))	
+# temp = numpy.argpartition(-classification, classification.argmax(axis=1))
+# result_args = -temp
+
+# temp = numpy.partition(-classification, classification.argmax(axis=1))
+# result = -temp
+# print(result_args)
+# print(result)
+# idx = numpy.argpartition(classification,range(4))[:,:-4-1:-1] # topM_ind
+# out = classification[numpy.arange(classification.shape[0])[:,None],idx]    # topM_score
+
+
+# print(y)
+# ind_max = tf.argmax(x, 1)
+# print(ind_max)
+# flat_y = tf.reshape(y, [-1])  # Reshape to a vector.
+# print(flat_y)
+# N.B. Handles 2-D case only.
+# flat_ind_max = ind_max + tf.cast(tf.range(tf.shape(y)[0]) * tf.shape(y)[1], tf.float32)
+
+# y_ = tf.gather(flat_y, flat_ind_max)
+
+# print(sess.run(y_)) # ==> "array([2, 6], dtype=int32)"
+# print(ind_max)
+# x_max = tf.reduce_max(y, reduction_indices=[1])
+# print(sess.run(x_max))
+# print(y.eval(feed_dict))
 # classification = sess.run(tf.argmax(y,1), feed_dict={x: [img]})
+# print(tf.maximum(y,1))
+# y_max = tf.reduce_max(y, reduction_indices=[1])
+# print(sess.run(y_max))
 # classification = sess.run(tf.global_variables(), feed_dict={x: [img]})
 # print(accuracy.eval(y, feed_dict={x: img}))
-probabilities=y
-print("probabilities ", probabilities.eval(sum(y), feed_dict={x: img}, session=sess))
-# plt.imshow(img.reshape(30, 10), cmap=plt.cm.binary)
-# plt.show()
+# probabilities=1
+# print("printrobabilities ", probabilities.eval(y, feed_dict={x: img}, session=sess))
+plt.imshow(img.reshape(30, 10), cmap=plt.cm.binary)
+plt.show()
 # print('NN predicted', classification)
 
 
