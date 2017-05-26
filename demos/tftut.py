@@ -46,7 +46,7 @@ from random import randint
 num = randint(0, mnist.test.images.shape[0])
 # print(mnist.test.images.shape)
 img = mnist.test.images[num]
-# print(img)
+print(img)
 
 
 feed_dict = {x: [img]}

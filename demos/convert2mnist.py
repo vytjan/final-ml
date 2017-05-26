@@ -47,7 +47,7 @@ else:
 header[3] = 3 # Changing MSB for image data (0x00000803)
 
 data_image = header + data_image
-print(data_image[1])
+print(data_image)
 # print(header)
 
 # output_file = open('test2', 'wb')
