@@ -33,6 +33,7 @@ header = array('B')
 header.extend([0,0,8,1,0,0])
 header.append(int('0x'+hexval[2:][:2],16))
 header.append(int('0x'+hexval[2:][2:],16))
+print(header)
 
 data_label = header + data_label
 
@@ -46,11 +47,12 @@ else:
 header[3] = 3 # Changing MSB for image data (0x00000803)
 
 data_image = header + data_image
-# print(len(data_label))
+print(data_image[1])
+# print(header)
 
-output_file = open('test', 'wb')
-data_image.tofile(output_file)
-output_file.close()
+# output_file = open('test2', 'wb')
+# data_image.tofile(output_file)
+# output_file.close()
 
 # output_file = open(name[1]+'text-labels-ubyte', 'wb')
 # data_label.tofile(output_file)
