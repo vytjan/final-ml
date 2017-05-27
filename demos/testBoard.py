@@ -26,7 +26,7 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('gb8.png')
+    img = cv2.imread('gb13.png')
     newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
