@@ -13,7 +13,7 @@ responses = []
 
 
 # iterate over the the folders of letters:
-directory = 'letters'
+directory = 'letters-50'
 for foldername in os.listdir(directory):
     # if filename.endswith("") or filename.endswith(".py"): 
     # print(os.path.join(directory, filename))
@@ -38,6 +38,6 @@ responses = np.array(responses,np.float32)
 print(responses)
 responses = responses.reshape((responses.size,1))
 
-# np.savetxt('generalsamplesNEW.data',samples)
-# np.savetxt('generalresponsesNEW.data',responses)
+np.savetxt('generalsamplesNEW.data',samples)
+np.savetxt('generalresponsesNEW.data',responses)
 print ("training complete")

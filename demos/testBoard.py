@@ -2,39 +2,31 @@ import cv2
 import numpy as np
 import difflib
 import codecs
-# import cnnpredict
 
-#######   training part    ###############
+
 global samples
 global responses
 global dictionary
+global metadata
 
 # load the dictionary:
 dictionary = codecs.open("dictionary.dat", encoding="utf-8").read().splitlines()
+metadata = codecs.open("batches.meta.txt", encoding="utf-8").read().splitlines()
 # print(dictionary)
-# print(len(dictionary))
 
-# something = difflib.get_close_matches('o6ia', dictionary)
-# print("zodis yra ",something)
-
-samples = np.loadtxt('generalsamplesA.data',np.float32)
-responses = np.loadtxt('generalresponsesA.data',np.float32)
-# print(responses)
+samples = np.loadtxt('generalsamplesNEW.data',np.float32)
+responses = np.loadtxt('generalresponsesNEW.data',np.float32)
 responses = responses.reshape((responses.size,1))
 
-# print(responses)
 global model
 model = cv2.ml.KNearest_create()
 model.train(samples, cv2.ml.ROW_SAMPLE, responses)
 
 def testing():
 
-    ############################# testing part  #########################
-
     kernel = np.ones((2,2),np.uint8)
 
     img = cv2.imread('gb3.png')
-    # img = cv2.resize(img, (640, 360))
     newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
@@ -43,16 +35,8 @@ def testing():
     # cv2.waitKey(0)
 
     img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)	
-    # cv2.imshow("grayscale", img)
-    # cv2.waitKey(0)
-    # (thresh, thresh1) = cv2.threshold(img, 127, 255, cv2.THRESH_OTSU)
-    # binary threshold works for the greenboard.
-    (thresh, thresh1) = cv2.threshold(img, 110,255,cv2.THRESH_BINARY)
-    # cv2.imshow("inverted", thresh1)
-    # cv2.waitKey(0)
 
-    # thresh1 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-            # cv2.THRESH_BINARY,15,11)
+    (thresh, thresh1) = cv2.threshold(img, 110,255,cv2.THRESH_BINARY)
 
     im2, contours, hierarchy = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     print("contours length",len(contours))
@@ -67,58 +51,21 @@ def testing():
     # dilation = cv2.dilate(thresh1,kernel,iterations = 1)
     # cv2.imshow("dilated", dilation)
     # cv2.waitKey(0)
-    eroded = cv2.dilate(thresh1,kernel2,iterations = 1)
+    eroded = cv2.dilate(thresh1,kernel2,iterations = 2)
     newImage = eroded[y:y+h, x:x+w]
-    # cv2.rectangle(newImage,(x,y),(x+w,y+h),(0,0,0),2)
-    # (thresh, thresh1) = cv2.threshold(newImage, 127,255,cv2.THRESH_BINARY_INV)
-    # th = cv2.bitwise_not(newImage)
     th = cv2.bitwise_not(newImage)
     thresh1 = cv2.adaptiveThreshold(th,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
     	cv2.THRESH_BINARY,21,21)
 
-    # cv2.imshow("inverted new image", thresh1)
-    # cv2.waitKey(0)
-    # cv2.imshow("contour", newImage)
-    # cv2.waitKey(0)  
-
-    # for cnt in contours:
-    #     [x,y,w,h] = cv2.boundingRect(cnt)
-    #     if (w < 20 and h<20) or (h > 180):
-    #         continue
-    #     # bounding.append([x,y,w,h])
-    # cv2.rectangle(thresh1,(x,y),(x+w,y+h),(0,0,0),2)
-
-    # cv2.imshow("find contours", thresh1)
-    # cv2.waitKey(0)
-    # blur = cv2.GaussianBlur(img,(4,4),0)
-    # ret3,thresh1 = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-
-    # ret,thresh1 = cv2.threshold(img,127,255,cv2.THRESH_TRUNC)
-    # cv2.imshow("threshold", thresh1)
-    # cv2.waitKey(0)
-
     kernel2 = np.ones((2,2),np.uint8)
-    # dilation = cv2.dilate(thresh1,kernel,iterations = 1)
-    # cv2.imshow("dilated", dilation)
-    # cv2.waitKey(0)
-    eroded = cv2.erode(thresh1,kernel2,iterations = 1)
-    # eroded = cv2.dilate(eroded,kernel,iterations = 1)
+    eroded = cv2.erode(thresh1,kernel2,iterations = 2)
+    eroded = cv2.dilate(eroded,kernel,iterations = 1)
     # cv2.imshow("eroded", eroded)
     # cv2.waitKey(0)
     im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     index = 0
     # list of bounding rects
     bounding = []
-    # # classification  
-    # samples =  np.empty((0,100))
-	# responses = []
-
-	# contours.pop(0)
-    # [x,y,w,h] = cv2.boundingRect(contours[0])
-    # newImage = eroded[y:y+h, x:x+w]
-    # cv2.rectangle(newImage,(x,y),(x+w,y+h),(0,0,0),2)
-    # cv2.imshow("new image", newImage)
-    # cv2.waitKey(0)    
 
     for cnt in contours:
         [x,y,w,h] = cv2.boundingRect(cnt)
@@ -140,7 +87,6 @@ def testing():
 
     for single in newbounding:
         [x,y,w,h] = [single[0], single[1], single[2], single[3]]
-        # print([x,y,w,h])
         adjustWidth([x,y,w,h], eroded, maxHeight, out, newx, newy)
         # cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
 
@@ -155,7 +101,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
     [x,y,w,h] = [coords[0], coords[1], coords[2], coords[3]]
 
     contourWidth = x + w
-    sampleWidth = 15
+    sampleWidth = 13
     # positions: a j N J. Default - a
     # print("max height is: ", maxHeight)
     print("new contour is iterated:          ")    
@@ -163,7 +109,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         # here we should find the nearest neighbours, thickering the width +2px every iteration:
         # declare empty array:
         lettersWidth = []
-        while sampleWidth < 48 and x + sampleWidth < contourWidth+5:
+        while sampleWidth < 48 and x + sampleWidth < contourWidth+8:
 
             # get results of the height variations of the letters:
             heightVariations = []
@@ -178,62 +124,36 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
                 # print(height)
                 heightVariations.append([y,height])
                 # height += 5
-                if y-h/2 > 0 and h < 80:
+                if y-height/2 > 0 and h < 80:
                     heightVariations.append([y-height/2, height])
-                elif y-h > 0 and h < 80:
+                elif y-height > 0 and h < 80:
                     heightVariations.append([y-height, height])
                 height += 1
-                # heightVariations.append([y,h*1.1])
-            # if j:
-            # if y-h/2 > 0 and h*1.5 < 1.1*maxHeight:
-            # if y-h/2 > 0 and h*1.5 < 85:
-            # 	height = h
-            # 	while height < 85:
 
-            #         heightVariations.append([y-h/2, height])
-            #         height += 5
-                # heightVariations.append([y-h/2, h*1.2])
-            # if a: 
-            # if y-h > 0 and h*3 < 1.1*maxHeight:
-            # if y-h > 0 and h*3 < 85:
-            # 	height = h
-            # 	while height < 85:
-
-            #         heightVariations.append([y-h, height])
-            #         height += 5
-                # heightVariations.append([y-h, h*1.5])
-
-            print("length of heightvars: ", len(heightVariations))
+            # print("length of heightvars: ", len(heightVariations))
             for singleCoord in heightVariations:
                 # print("new iteration of getting roi: \n")
                 xplus = 0
                 # while xplus < 7:
+                # print(x, singleCoord[0], sampleWidth, singleCoord[1])
                 results, dists = getRoi(eroded, [x, singleCoord[0], sampleWidth, singleCoord[1]])
-                lettersWidth.append([dists, x, singleCoord[0], sampleWidth, singleCoord[1], results[0][0]])
-                    # xplus += 2
-            # Get needed roi:
-        
-            # print("retrieved value is: ", retval)
-            # print("results are: ", results[0][0])
-            # print("Neighbor responses are: ", neigh_resp)
-            # print("Distances from input vectors: ", dists)
-            # string = chr(int(results[0][0]))
-            # cv2.imshow("cropped", cropToLetter)
-            # key = cv2.waitKey(0)
+                lettersWidth.append([dists, x, singleCoord[0], sampleWidth, singleCoord[1], metadata[int(results[0][0])-1]])
+
             sampleWidth = sampleWidth + 1
         # here I decide which is the best 'guess':
-        # print("length is: ", len(lettersWidth))
         if len(lettersWidth) > 0:
             bestGuess = sortGuesses(lettersWidth)
         else:
             break
 
-        string = chr(int(bestGuess[5]))
-        textValue.append(string)
-        cv2.putText(out,string,(int(bestGuess[1]), int(bestGuess[2]+bestGuess[4])),0,1,(0,0,255))
+        # string = metadata[int(bestGuess[5])-1]
+        textValue.append(bestGuess[5])
+        cv2.putText(out,bestGuess[5],(int(bestGuess[1]), int(bestGuess[2]+bestGuess[4])),0,1,(0,0,255))
         cv2.rectangle(out,(int(bestGuess[1]),int(bestGuess[2])),(int(x+bestGuess[3]), int(bestGuess[2]+bestGuess[4])),(0,0,0),1)
+        cv2.imshow('out',out)
+        cv2.waitKey(0)
         # reset start x value:
-        x = x + bestGuess[3] - 3
+        x = x + bestGuess[3] - 2
 
         sampleWidth = 13
         # print(lettersWidth)	
@@ -242,7 +162,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
 	# # get the closest match of the word:
     word = "".join(textValue)
     print("word", word)
-    something = difflib.get_close_matches(word, dictionary, n=2, cutoff= 0.5) 
+    something = difflib.get_close_matches(word, dictionary, n=2, cutoff= 0.4) 
     print(something)
     # cv2.imshow('im',eroded)
     # cv2.imshow('out',out)
@@ -250,14 +170,16 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
 
 def sortGuesses(letters):
     closest = letters[0]
+    # sorted = np.sort(letters, axis = 0)
+    # sorted = letters.sort()
+    letters.sort(key=lambda x: np.sum(x[0]), reverse=False)
+    # print(letters)
     for single in letters:
     	# print("sum of the closest is:", np.sum(single[0]))
+    	# print(single[5])
     	if np.sum(single[0]) < np.sum(closest[0]):
     		closest = single
-    	# print("single is: ",single)
-    	# if single[0] < closest[0]:
-        	# closest = single
-    # print("sum of the closest is:", np.sum(closest[0]))
+    # print("vienas rūšiavimas baigtas.")
     return closest  
 
 
@@ -274,21 +196,19 @@ def getRoi(eroded, coords):
     # cv2.imshow("roismall", roismall)
     # cv2.waitKey(0)
     roismall = roismall.reshape((1,300))
-    # print(roismall[0])
     roismall = np.float32(roismall)
-    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 25)
+    retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
     # print("distances are; ", dists)
-    print("knn results are: ", chr(int(results[0][0])))
+    # print("knn results are: ", results)
+    # print("neighbor response: ", neigh_resp)
 
-    # reply = testcnn.main(roismall[0])
-    # print(reply)
     # print("results are: ", results)
-    # for single in neigh_resp:
-    	# random = []
+    for single in neigh_resp[0]:
+    	random = []
     	# for singleLetters in single:
     		# jei daugiau nei 5, tada pridedam:
     		# random.append(chr(int(singleLetters)))
-    		# print(chr(int(singleLetters)))
+    	# print(metadata[int(single)-1])
     	# print(random)
     # print("neighour response is: ",neigh_resp)
     # print("ret value is: ", retval)
@@ -297,7 +217,6 @@ def getRoi(eroded, coords):
 
 def removeInnerContours(eroded, bounding, im_bw):
     # remove contours from inside of other contours:
-    # boundingUnit = [x,y, height, width]
     newbounding = []
     bounding2 = list(bounding)
     for bunit in bounding:
@@ -309,7 +228,6 @@ def removeInnerContours(eroded, bounding, im_bw):
         if (bunit[2] > 15 and bunit[3] > 15):
             newbounding.append([bunit[0], bunit[1], bunit[2], bunit[3]])
             continue
-    #   print(len(newbounding))
 
     return newbounding
 
