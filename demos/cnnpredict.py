@@ -38,65 +38,6 @@ model.train(samples, cv2.ml.ROW_SAMPLE, responses)
 
 def testing():
 
-
-  # # Create the model
-  # x = tf.placeholder(tf.float32, [None, 300])
-  # y_ = tf.placeholder(tf.float32, [None, 62])
-  # W = tf.Variable(tf.zeros([300, 62]))
-  # b = tf.Variable(tf.zeros([62]))
-  # y = tf.nn.softmax(tf.matmul(x, W) + b)
-
-  # def weight_variable(shape):
-  #   initial = tf.truncated_normal(shape, stddev=0.1)
-  #   return tf.Variable(initial)
-
-  # def bias_variable(shape):
-  #   initial = tf.constant(0.1, shape=shape)
-  #   return tf.Variable(initial)
-
-
-  # def conv2d(x, W):
-  #   return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
-
-  # def max_pool_2x2(x):
-  #   return tf.nn.max_pool(x, ksize=[1, 2, 2, 1],
-  #                         strides=[1, 2, 2, 1], padding='SAME')
-
-
-  # W_conv1 = weight_variable([5, 5, 1, 32])
-  # b_conv1 = bias_variable([32])
-
-  # x_image = tf.reshape(x, [-1,10,30,1])
-  # h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
-  # h_pool1 = max_pool_2x2(h_conv1)
-
-
-  # W_conv2 = weight_variable([5, 5, 32, 64])
-  # b_conv2 = bias_variable([64])
-
-  # h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
-  # h_pool2 = h_conv2
-
-  # W_fc1 = weight_variable([5 * 15 * 32, 1024])
-  # b_fc1 = bias_variable([1024])
-
-  # h_pool2_flat = tf.reshape(h_pool1, [-1, 5*15*32])
-  # h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
-
-  # keep_prob = tf.placeholder(tf.float32)
-  # h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
-
-  # W_fc2 = weight_variable([1024, 62])
-  # b_fc2 = bias_variable([62])
-
-  # y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
-
-
-  # init_op = tf.global_variables_initializer()
-  # saver = tf.train.Saver()
-
-    ############################# testing part  #########################
-
     kernel = np.ones((2,2),np.uint8)
 
     img = cv2.imread('skrenda.png')
@@ -174,35 +115,9 @@ def testing():
         [x,y,w,h] = [single[0], single[1], single[2], single[3]]
         # print([x,y,w,h])
         adjustWidth([x,y,w,h], eroded, maxHeight, out, newx, newy)
-        # with tf.Session() as sess:
-        #   sess.run(init_op)
-        #   saver.restore(sess, "./model2.ckpt")
-    #print ("Model restored.")
-    
-    # prediction=tf.argmax(y_conv,1)
-    # return prediction.eval(feed_dict={x: [imvalue],keep_prob: 1.0}, session=sess)
 
     print("finished. ")
 
-    # # prediction=tf.argmax(y_conv,1)
-    
-    # feed_dict = {x: [imvalue],keep_prob: 1.0}
-    # classification = sess.run(y_conv, feed_dict)
-    # # classification = prediction.eval(feed_dict={x: [imvalue],keep_prob: 1.0}, session=sess)
-    # print(classification.argmax(axis=1)[0])
-    # reply = []
-    # reply.append(classification.argmax(axis=1)[0])
-    # reply.append(np.amax(classification, axis=1)[0]) 
-    # # print(classification)
-    # # print(len(classification[0]))
-    # print(np.amax(classification, axis=1)[0])
-    # # print(classification[0])
-    # return reply
-        # cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
-
-    # cv2.imshow('im',eroded)
-    # cv2.imshow('out',out)
-    # cv2.waitKey(0)
 
 # extract the words into letters:
 def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
@@ -219,7 +134,7 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         # here we should find the nearest neighbours, thickering the width +2px every iteration:
         # declare empty array:
         lettersWidth = []
-        while sampleWidth < 45 and x + sampleWidth < contourWidth+5:
+        while sampleWidth < 48 and x + sampleWidth < contourWidth+8:
 
             # get results of the height variations of the letters:
             heightVariations = []
@@ -230,54 +145,53 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # if l, increase below:
             # if h*1.5 < 85:
             height = h
-            # while height < 70:
+            while height < 80:
                 # print(height)
-            heightVariations.append([y,height])
+                heightVariations.append([y,height])
                 # height += 5
-                # if y-h/2 > 0 and h < 70:
-                #     heightVariations.append([y-height/2, height])
-                # elif y-h > 0 and h < 70:
-                #     heightVariations.append([y-height, height])
-                # height += 10
-
+                if y-height/2 > 0 and h < 80:
+                    heightVariations.append([y-height/2, height])
+                elif y-height > 0 and h < 80:
+                    heightVariations.append([y-height, height])
+                height += 1
 
             # print("length of heightvars: ", len(heightVariations))
             for singleCoord in heightVariations:
                 # print("new iteration of getting roi: \n")
-                # xplus = 0
+                xplus = 0
                 # while xplus < 7:
+                # print(x, singleCoord[0], sampleWidth, singleCoord[1])
                 results, dists = getRoi(eroded, [x, singleCoord[0], sampleWidth, singleCoord[1]])
-                lettersWidth.append([dists, x, singleCoord[0], sampleWidth, singleCoord[1], results])
+                lettersWidth.append([dists, x, singleCoord[0], sampleWidth, singleCoord[1], metadata[int(results)-1]])
 
-            sampleWidth = sampleWidth + 2
-
+            sampleWidth = sampleWidth + 1
         # here I decide which is the best 'guess':
-        # print("length is: ", len(lettersWidth))
         if len(lettersWidth) > 0:
             bestGuess = sortGuesses(lettersWidth)
         else:
             break
 
-        print("best guess looks like: ", bestGuess[5])
-        string = metadata[bestGuess[5]-1]
-        textValue.append(string)
-        cv2.putText(out,string,(int(bestGuess[1]), int(bestGuess[2]+bestGuess[4])),0,1,(0,0,255))
+        # string = metadata[int(bestGuess[5])-1]
+        textValue.append(bestGuess[5])
+        cv2.putText(out,bestGuess[5],(int(bestGuess[1]), int(bestGuess[2]+bestGuess[4])),0,1,(0,0,255))
         cv2.rectangle(out,(int(bestGuess[1]),int(bestGuess[2])),(int(x+bestGuess[3]), int(bestGuess[2]+bestGuess[4])),(0,0,0),1)
+        cv2.imshow('out',out)
+        cv2.waitKey(0)
         # reset start x value:
-        x = x + bestGuess[3]
+        x = x + bestGuess[3] - 2
 
         sampleWidth = 13
-        # print(lettersWidth)
+        # print(lettersWidth)   
         continue
 
-  # # get the closest match of the word:
+    # # get the closest match of the word:
     word = "".join(textValue)
     print("word", word)
-    something = difflib.get_close_matches(word, dictionary, n=2, cutoff= 0.5) 
+    something = difflib.get_close_matches(word, dictionary, n=2, cutoff= 0.4) 
     print(something)
-    cv2.imshow('im',eroded)
-    cv2.imshow('out',out)
-    cv2.waitKey(0)
+    # cv2.imshow('im',eroded)
+    # cv2.imshow('out',out)
+    # cv2.waitKey(0)
 
 def sortGuesses(letters):
     closest = letters[0]
@@ -403,7 +317,10 @@ def predictint(imvalue):
     # prediction=tf.argmax(y_conv,1)
     # return prediction.eval(feed_dict={x: [imvalue],keep_prob: 1.0}, session=sess)
 
+    
 
+
+    
 
     # prediction=tf.argmax(y_conv,1)
     

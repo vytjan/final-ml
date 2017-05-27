@@ -26,7 +26,7 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('gb3.png')
+    img = cv2.imread('gb8.png')
     newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #new size (w,h)
     print("Rescaled, new dimensions: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
@@ -36,7 +36,7 @@ def testing():
 
     img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)	
 
-    (thresh, thresh1) = cv2.threshold(img, 110,255,cv2.THRESH_BINARY)
+    (thresh, thresh1) = cv2.threshold(img, 127,255,cv2.THRESH_BINARY)
 
     im2, contours, hierarchy = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     print("contours length",len(contours))
@@ -52,16 +52,18 @@ def testing():
     # cv2.imshow("dilated", dilation)
     # cv2.waitKey(0)
     eroded = cv2.dilate(thresh1,kernel2,iterations = 2)
+
     newImage = eroded[y:y+h, x:x+w]
     th = cv2.bitwise_not(newImage)
     thresh1 = cv2.adaptiveThreshold(th,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-    	cv2.THRESH_BINARY,21,21)
+    	cv2.THRESH_BINARY,43,43)
 
     kernel2 = np.ones((2,2),np.uint8)
+    eroded = cv2.dilate(thresh1,kernel,iterations = 1)
     eroded = cv2.erode(thresh1,kernel2,iterations = 2)
     eroded = cv2.dilate(eroded,kernel,iterations = 1)
-    # cv2.imshow("eroded", eroded)
-    # cv2.waitKey(0)
+    cv2.imshow("eroded", eroded)
+    cv2.waitKey(0)
     im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     index = 0
     # list of bounding rects
@@ -91,6 +93,7 @@ def testing():
         # cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
 
     cv2.imshow('im',eroded)
+    cv2.waitKey(0)
     cv2.imshow('out',out)
     cv2.waitKey(0)
 
@@ -150,8 +153,8 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
         textValue.append(bestGuess[5])
         cv2.putText(out,bestGuess[5],(int(bestGuess[1]), int(bestGuess[2]+bestGuess[4])),0,1,(0,0,255))
         cv2.rectangle(out,(int(bestGuess[1]),int(bestGuess[2])),(int(x+bestGuess[3]), int(bestGuess[2]+bestGuess[4])),(0,0,0),1)
-        cv2.imshow('out',out)
-        cv2.waitKey(0)
+        # cv2.imshow('out',out)
+        # cv2.waitKey(0)
         # reset start x value:
         x = x + bestGuess[3] - 2
 
@@ -162,11 +165,11 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
 	# # get the closest match of the word:
     word = "".join(textValue)
     print("word", word)
-    something = difflib.get_close_matches(word, dictionary, n=2, cutoff= 0.4) 
+    something = difflib.get_close_matches(word, dictionary, n=3, cutoff= 0.5) 
     print(something)
     # cv2.imshow('im',eroded)
-    # cv2.imshow('out',out)
-    # cv2.waitKey(0)
+    cv2.imshow('out',out)
+    cv2.waitKey(0)
 
 def sortGuesses(letters):
     closest = letters[0]
