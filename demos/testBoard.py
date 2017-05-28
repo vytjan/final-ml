@@ -11,7 +11,7 @@ global metadata
 
 # load the dictionary:
 dictionary = codecs.open("dictionary.dat", encoding="utf-8").read().splitlines()
-metadata = codecs.open("batches.meta.txt", encoding="utf-8").read().splitlines()
+metadata = codecs.open("lettertags.txt", encoding="utf-8").read().splitlines()
 # print(dictionary)
 
 samples = np.loadtxt('generalsamplesNEW.data',np.float32)
@@ -27,8 +27,8 @@ def testing():
     kernel = np.ones((2,2),np.uint8)
 
     img = cv2.imread('gb13.png')
-    newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #new size (w,h)
-    print("Rescaled, new dimensions: ", newx, newy)
+    newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #resize (w,h)
+    print("New dimensions are: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
     # out = newimage
     # cv2.imshow("color image", out)
@@ -39,7 +39,7 @@ def testing():
     (thresh, thresh1) = cv2.threshold(img, 127,255,cv2.THRESH_BINARY)
 
     im2, contours, hierarchy = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-    print("contours length",len(contours))
+    print("contours length", len(contours))
     # remove the first contour:
     contours.pop(0)
     # find the largest contour:
