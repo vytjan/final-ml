@@ -32,22 +32,22 @@ def testing():
     print("New dimensions are: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
     out = newimage
-    cv2.imshow("color image", out)
-    cv2.waitKey(0)
+    # cv2.imshow("color image", out)
+    # cv2.waitKey(0)
 
     img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)	
 
     (thresh, thresh1) = cv2.threshold(img, 127,255,cv2.THRESH_BINARY)
-    cv2.imshow("thresh1 ", thresh1)
-    cv2.waitKey(0)
+    # cv2.imshow("thresh1 ", thresh1)
+    # cv2.waitKey(0)
 
     im2, contours, hierarchy = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     print("contours length", len(contours))
     # remove the first contour:
-    contours.pop(0)
+    # contours.pop(0)
     # find the largest contour:
     c = max(contours, key = cv2.contourArea)
-    contours.pop(0)
+    # contours.pop(0)
     [x,y,w,h] = cv2.boundingRect(c)
     out = newimage[y:y+h, x:x+w]
     kernel2 = np.ones((2,2),np.uint8)
@@ -79,7 +79,7 @@ def testing():
         bounding.append([x,y,w,h])
         # cv2.rectangle(out,(x,y),(x+w,y+h),(0,0,0),2)
 
-    cv2.imshow("contours", eroded)
+    cv2.imshow("contours", out)
     cv2.waitKey(0)
 
     newbounding = removeInnerContours(eroded, bounding, newImage)
@@ -95,10 +95,10 @@ def testing():
         adjustWidth([x,y,w,h], eroded, maxHeight, out, newx, newy)
         # cv2.rectangle(eroded,(x,y),(x+w,y+h),(0,0,0),2)
 
-    cv2.imshow('im',eroded)
-    cv2.waitKey(0)
-    cv2.imshow('out',out)
-    cv2.waitKey(0)
+    # cv2.imshow('im',eroded)
+    # cv2.waitKey(0)
+    # cv2.imshow('out',out)
+    # cv2.waitKey(0)
 
 # extract the words into letters:
 def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
@@ -203,8 +203,8 @@ def getRoi(eroded, coords):
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
     retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
-    print("distances are; ", dists)
-    print("knn results are: ", results)
+    # print("distances are; ", dists)	
+    # print("knn results are: ", results)
     # print("neighbor response: ", neigh_resp)
 
     # print("results are: ", results)
@@ -228,9 +228,9 @@ def removeInnerContours(eroded, bounding, im_bw):
         for nunit in bounding2:
             if (nunit[0] > bunit[0] and nunit[0]+nunit[2] < bunit[0]+bunit[2] and nunit[1] > bunit[1] and nunit[1]+nunit[3] < bunit[1]+bunit[3]):            
                 # newbounding.append([bunit[0], bunit[1], bunit[2], bunit[3]])
-                bounding.remove(nunit)
+                # bounding.remove(nunit)
                 continue
-        if (bunit[2] > 15 and bunit[3] > 15):
+        if (bunit[2] > 15 and bunit[3] > 15	):
             newbounding.append([bunit[0], bunit[1], bunit[2], bunit[3]])
             continue
 
