@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import difflib
 import codecs
+import sys
 
 
 global samples
@@ -26,17 +27,19 @@ def testing():
 
     kernel = np.ones((2,2),np.uint8)
 
-    img = cv2.imread('gb13.png')
+    img = cv2.imread(sys.argv[1])
     newx,newy = img.shape[1]/3.5,img.shape[0]/3.5    #resize (w,h)
     print("New dimensions are: ", newx, newy)
     newimage = cv2.resize(img,(int(newx), int(newy)))
-    # out = newimage
-    # cv2.imshow("color image", out)
-    # cv2.waitKey(0)
+    out = newimage
+    cv2.imshow("color image", out)
+    cv2.waitKey(0)
 
     img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)	
 
     (thresh, thresh1) = cv2.threshold(img, 127,255,cv2.THRESH_BINARY)
+    cv2.imshow("thresh1 ", thresh1)
+    cv2.waitKey(0)
 
     im2, contours, hierarchy = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     print("contours length", len(contours))
@@ -117,7 +120,6 @@ def adjustWidth(coords, eroded, maxHeight, out, newx, newy):
             # get results of the height variations of the letters:
             heightVariations = []
 
-            # clean up this stuff later:------------------------------------------------------------------
             # If J, do nothing:
             heightVariations.append([y,h])
             # if l, increase below:
@@ -201,8 +203,8 @@ def getRoi(eroded, coords):
     roismall = roismall.reshape((1,300))
     roismall = np.float32(roismall)
     retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
-    # print("distances are; ", dists)
-    # print("knn results are: ", results)
+    print("distances are; ", dists)
+    print("knn results are: ", results)
     # print("neighbor response: ", neigh_resp)
 
     # print("results are: ", results)
