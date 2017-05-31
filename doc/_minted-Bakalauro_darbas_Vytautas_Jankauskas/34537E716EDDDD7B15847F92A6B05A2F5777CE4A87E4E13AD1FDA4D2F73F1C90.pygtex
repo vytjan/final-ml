@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} NumPy paketo importavimas:}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+\PYG{c+c1}{\PYGZsh{} Sukuriamas masyvas, kurio pradinės vertės yra atsitiktinės:}
+\PYG{n}{samples} \PYG{o}{=}  \PYG{n}{np}\PYG{o}{.}\PYG{n}{empty}\PYG{p}{((}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{300}\PYG{p}{))}
+\end{Verbatim}

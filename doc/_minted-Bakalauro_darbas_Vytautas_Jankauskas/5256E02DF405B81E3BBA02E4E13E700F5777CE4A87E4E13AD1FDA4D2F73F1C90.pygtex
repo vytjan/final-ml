@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Mokymo duomenų rinkinio failų įkėlimas:}
+\PYG{n}{samples} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{loadtxt}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}generalsamplesNEW.data\PYGZsq{}}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{)}
+\PYG{n}{responses} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{loadtxt}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}generalresponsesNEW.data\PYGZsq{}}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{)}
+\PYG{n}{responses} \PYG{o}{=} \PYG{n}{responses}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{((}\PYG{n}{responses}\PYG{o}{.}\PYG{n}{size}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} KNN algoritmo modelio sukūrimas ir apmokymas:}
+\PYG{k}{global} \PYG{n}{model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{ml}\PYG{o}{.}\PYG{n}{KNearest\PYGZus{}create}\PYG{p}{()}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{train}\PYG{p}{(}\PYG{n}{samples}\PYG{p}{,} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{ml}\PYG{o}{.}\PYG{n}{ROW\PYGZus{}SAMPLE}\PYG{p}{,} \PYG{n}{responses}\PYG{p}{)}
+\end{Verbatim}

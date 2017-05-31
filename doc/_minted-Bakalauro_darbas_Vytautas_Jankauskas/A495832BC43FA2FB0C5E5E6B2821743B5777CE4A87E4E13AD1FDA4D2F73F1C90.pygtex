@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Žodžių, panašiausių į „žodis“ paiešką masyve „žodynas“.}
+\PYG{c+c1}{\PYGZsh{} Cutoff parametras nurodo norimą panašumo koeficientą.}
+\PYG{n}{something} \PYG{o}{=} \PYG{n}{difflib}\PYG{o}{.}\PYG{n}{get\PYGZus{}close\PYGZus{}matches}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}žodis\PYGZdq{}}\PYG{p}{,} \PYG{n}{zodynas}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{cutoff}\PYG{o}{=} \PYG{l+m+mf}{0.35}\PYG{p}{)}
+\end{Verbatim}

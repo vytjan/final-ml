@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Įkeliame paveikslėlį:}
+\PYG{n}{img} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}learn2.png\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Keičiame spalvų erdvę iš RGB į grayscale:}
+\PYG{n}{img} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{cvtColor}\PYG{p}{(}\PYG{n}{newimage}\PYG{p}{,}\PYG{n}{cv2}\PYG{o}{.}\PYG{n}{COLOR\PYGZus{}BGR2GRAY}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Prisitaikančios slenkstinės vertės funkcija:}
+\PYG{n}{thresh1} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{adaptiveThreshold}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{l+m+mi}{255}\PYG{p}{,}\PYG{n}{cv2}\PYG{o}{.}\PYG{n}{ADAPTIVE\PYGZus{}THRESH\PYGZus{}MEAN\PYGZus{}C}\PYG{p}{,}\PYGZbs{}
+	\PYG{n}{cv2}\PYG{o}{.}\PYG{n}{THRESH\PYGZus{}BINARY}\PYG{p}{,}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{24}\PYG{p}{)}
+\end{Verbatim}

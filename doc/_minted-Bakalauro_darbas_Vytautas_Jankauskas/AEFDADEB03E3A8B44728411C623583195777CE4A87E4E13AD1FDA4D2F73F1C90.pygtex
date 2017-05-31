@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Struktūrinio elemento (2x2 dydžio) sukūrimas ir atliktos 2 ardymo operacijos iteracijos:}
+\PYG{n}{kernel2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{((}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}\PYG{n}{np}\PYG{o}{.}\PYG{n}{uint8}\PYG{p}{)}
+\PYG{n}{eroded} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{erode}\PYG{p}{(}\PYG{n}{thresh1}\PYG{p}{,}\PYG{n}{kernel2}\PYG{p}{,}\PYG{n}{iterations} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{)}
+\end{Verbatim}

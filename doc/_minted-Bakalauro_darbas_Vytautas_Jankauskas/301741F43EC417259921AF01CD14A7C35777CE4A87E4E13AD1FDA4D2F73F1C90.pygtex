@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Importuoti OpenCV biblioteką:}
+\PYG{k+kn}{import} \PYG{n+nn}{cv2}
+\PYG{c+c1}{\PYGZsh{} Kintamajam key priskiriame pirmo paspausto mygtuko reikšmę}
+\PYG{n}{key} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{waitKey}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Jei vartotojas paspaudžia \PYGZdq{}Enter\PYGZdq{}, išspausdinti:}
+\PYG{k}{if} \PYG{n}{key} \PYG{o}{==} \PYG{l+m+mi}{13}\PYG{p}{:}
+	\PYG{k}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Paspaudėte Enter.\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

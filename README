@@ -1,0 +1,20 @@
+# final-ml
+# learnopencv
+Final bachelor project on computer vision.
+
+Programos prototipo veikimas išbandytas naudojant kartu pateiktus atvaizdus ir šias programinės įrangos komponentų versijas:
+	Operacinė sistema – Linux Ubuntu 16.04 versija.
+	Python 3.5.2 versija.
+	Python NumPy paketo 1.11.0 versija.
+
+Darbo failus sudaro „src“ ir „doc“ aplankai. Aplanke „doc“ yra šio rašto darbo pdf ir tex formato failai, o „images“ aplanke – darbe naudojamos iliustracijos.
+
+„src“ aplanke patalpinti darbo praktinėje dalyje naudoti failai. „letters-50“ aplanke patalpintas mokymosi duomenų rinkinys, sukurtas naudojant „classification.py“ programą. Programa „learningset.py“ sugeneravo „generalsamplesNEW.data“ ir „generalresponsesNEW.data“ failus. Pagal juos apmokomas KNN algoritmas. „dictionary.data“ faile yra darbo autoriaus sudarytas 250 žodžių žodynas. „lettertags.data“ faile surašytos lietuvių kalbos abėcėlės raidės, naudojamos mokymo duomenų žymių dekodavimui. Eksperimente naudotas „testBoard.py“ algoritmas, kuriame analizuoti „test_images“ direktorijoje esantys atvaizdai. Bandymų rezultatai įrašyti „statistika.ods“ faile.
+
+Programiniai failai vykdomi komandinėje eilutėje. Jų paleidimo instrukcijos (esant „src“ direktorijoje):
+	Mokymosi duomenų ruošimo programos argumentas yra norimo textitpng formato atvaizdo vardas:
+		python3 classification.py learning_data/learn1.png
+	Duomenų rinkinio vertimas į tekstinius failus:
+		python3 learningset.py
+	Eksperimente naudotos žodžių atpažinimo programos argumentas yra analizuojamo png formato atvaizdo vardas:
+		python3 testBoard.py test_images/test1.png

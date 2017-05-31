@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Surandamas artimiausias kaimyninis elementas:}
+\PYG{n}{retval}\PYG{p}{,} \PYG{n}{results}\PYG{p}{,} \PYG{n}{neigh\PYGZus{}resp}\PYG{p}{,} \PYG{n}{dists} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{findNearest}\PYG{p}{(}\PYG{n}{roismall}\PYG{p}{,} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{)}
+\end{Verbatim}

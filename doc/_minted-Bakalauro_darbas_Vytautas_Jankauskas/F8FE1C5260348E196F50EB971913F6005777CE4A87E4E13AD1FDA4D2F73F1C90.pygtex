@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Importuoti OpenCV biblioteką:}
+\PYG{k+kn}{import} \PYG{n+nn}{cv2}
+\PYG{c+c1}{\PYGZsh{} Įkelti atvaizdą į programą:}
+\PYG{n}{img} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}gb3.png\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Sumažinti skiriamąją gebą:}
+\PYG{n}{newx}\PYG{p}{,}\PYG{n}{newy} \PYG{o}{=} \PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{/}\PYG{l+m+mf}{3.5}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{l+m+mf}{3.5}
+\PYG{n}{newimage} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,(}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{newx}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{newy}\PYG{p}{)))}
+\end{Verbatim}

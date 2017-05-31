@@ -1,0 +1,41 @@
+\select@language {lithuanian}
+\contentsline {section}{\IeC {\k I}vadas}{3}{section*.1}
+\contentsline {paragraph}{}{3}{section*.2}
+\contentsline {section}{\numberline {1}Naudotos technologijos}{6}{section.1}
+\contentsline {subsection}{\numberline {1.1}Kompiuterin\IeC {\.e}s regos biblioteka OpenCV}{6}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Python programavimo kalbos paketai}{9}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}NumPy}{9}{subsubsection.1.2.1}
+\contentsline {paragraph}{}{9}{section*.10}
+\contentsline {subsubsection}{\numberline {1.2.2}Sys ir os paketai}{9}{subsubsection.1.2.2}
+\contentsline {paragraph}{}{9}{section*.11}
+\contentsline {subsubsection}{\numberline {1.2.3}Difflib paketas}{10}{subsubsection.1.2.3}
+\contentsline {paragraph}{}{10}{section*.12}
+\contentsline {section}{\numberline {2}Problemos sprendimas}{11}{section.2}
+\contentsline {paragraph}{}{11}{section*.13}
+\contentsline {subsection}{\numberline {2.1}Mokymo duomen\IeC {\k u} ruo\IeC {\v s}imas}{11}{subsection.2.1}
+\contentsline {paragraph}{}{11}{section*.14}
+\contentsline {subsection}{\numberline {2.2}Vaizdo apdorojimas}{14}{subsection.2.2}
+\contentsline {paragraph}{}{14}{section*.19}
+\contentsline {subsection}{\numberline {2.3}Rankra\IeC {\v s}\IeC {\v c}io atpa\IeC {\v z}inimo algoritmas}{15}{subsection.2.3}
+\contentsline {paragraph}{}{15}{section*.21}
+\contentsline {section}{\numberline {3}Eksperimentas}{17}{section.3}
+\contentsline {paragraph}{}{17}{section*.23}
+\contentsline {subsection}{\numberline {3.1}Tinkam\IeC {\k u} parametr\IeC {\k u} nustatymas}{17}{subsection.3.1}
+\contentsline {paragraph}{}{17}{section*.25}
+\contentsline {subsection}{\numberline {3.2}Eksperimento eiga}{18}{subsection.3.2}
+\contentsline {paragraph}{}{18}{section*.28}
+\contentsline {subsection}{\numberline {3.3}Algoritmo tr\IeC {\=u}kumai}{19}{subsection.3.3}
+\contentsline {paragraph}{}{19}{section*.32}
+\contentsline {subsection}{\numberline {3.4}Eksperimento rezultatai}{20}{subsection.3.4}
+\contentsline {paragraph}{}{20}{section*.35}
+\contentsline {section}{I\IeC {\v s}vados}{23}{section*.37}
+\contentsline {paragraph}{}{23}{section*.38}
+\contentsline {section}{Literat\IeC {\=u}ra}{24}{section*.39}
+\contentsline {section}{Santrauka}{26}{section*.40}
+\contentsline {paragraph}{}{26}{section*.41}
+\contentsline {paragraph}{}{26}{section*.42}
+\contentsline {section}{Summary}{27}{section*.43}
+\contentsline {paragraph}{}{27}{section*.44}
+\contentsline {paragraph}{}{27}{section*.45}
+\contentsline {section}{Priedas}{}{section*.45}
+\contentsline {paragraph}{}{28}{section*.48}

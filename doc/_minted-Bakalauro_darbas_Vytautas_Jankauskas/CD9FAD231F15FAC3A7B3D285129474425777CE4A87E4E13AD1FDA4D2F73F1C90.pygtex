@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{}Kontūrų suradimas:}
+\PYG{n}{im2}\PYG{p}{,} \PYG{n}{contours}\PYG{p}{,} \PYG{n}{hierarchy} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{findContours}\PYG{p}{(}\PYG{n}{eroded}\PYG{p}{,}\PYG{n}{cv2}\PYG{o}{.}\PYG{n}{RETR\PYGZus{}TREE}\PYG{p}{,}\PYG{n}{cv2}\PYG{o}{.}\PYG{n}{CHAIN\PYGZus{}APPROX\PYGZus{}SIMPLE}\PYG{p}{)}
+\end{Verbatim}
