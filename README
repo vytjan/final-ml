@@ -7,7 +7,8 @@ Programos prototipo veikimas išbandytas naudojant kartu pateiktus atvaizdus ir 
 	Python 3.5.2 versija.
 	Python NumPy paketo 1.11.0 versija.
 
-Darbo failus sudaro „src“ ir „doc“ aplankai. Aplanke „doc“ yra šio rašto darbo pdf ir tex formato failai, o „images“ aplanke – darbe naudojamos iliustracijos.
+Darbo failus sudaro „src“ ir „doc“ aplankai. Aplanke „doc“ yra šio rašto darbo pdf ir tex formato failai, o „images“ aplanke – darbe naudojamos iliustracijos. tex formato failas kompiliuojamas į pdf dokumentą vykdant komandą:
+	pdflatex -synctex=1 -interaction=nonstopmode --shell-escape "Bakalauro_darbas_Vytautas_Jankauskas".tex
 
 „src“ aplanke patalpinti darbo praktinėje dalyje naudoti failai. „letters-50“ aplanke patalpintas mokymosi duomenų rinkinys, sukurtas naudojant „classification.py“ programą. Programa „learningset.py“ sugeneravo „generalsamplesNEW.data“ ir „generalresponsesNEW.data“ failus. Pagal juos apmokomas KNN algoritmas. „dictionary.data“ faile yra darbo autoriaus sudarytas 250 žodžių žodynas. „lettertags.data“ faile surašytos lietuvių kalbos abėcėlės raidės, naudojamos mokymo duomenų žymių dekodavimui. Eksperimente naudotas „testBoard.py“ algoritmas, kuriame analizuoti „test_images“ direktorijoje esantys atvaizdai. Bandymų rezultatai įrašyti „statistika.ods“ faile.
 
