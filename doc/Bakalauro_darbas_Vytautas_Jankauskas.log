@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.5.29)  31 MAY 2017 20:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.5.29)  31 MAY 2017 22:29
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -299,6 +299,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \c@ContinuedFloat=\count108
 Package caption Info: hyperref package is loaded.
 )
+Package caption Info: We need package `newfloat' on input line 19.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/newfloat.sty
+Package: newfloat 2015/09/17 v1.1-109 Defining new floating environments (AR)
+)
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count109
@@ -418,26 +423,26 @@ runsystem(rm "Bakalauro_darbas_Vytautas_Jankauskas.aex")...executed.
 (./Bakalauro_darbas_Vytautas_Jankauskas.aux)
 \openout1 = `Bakalauro_darbas_Vytautas_Jankauskas.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for L7x/lmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for L7x/lmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-44.
+48.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -485,7 +490,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 143.
 )
-Package hyperref Info: Link coloring ON on input line 44.
+Package hyperref Info: Link coloring ON on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -495,9 +500,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 44.
-LaTeX Info: Redefining \pageref on input line 44.
-LaTeX Info: Redefining \nameref on input line 44.
+LaTeX Info: Redefining \ref on input line 48.
+LaTeX Info: Redefining \pageref on input line 48.
+LaTeX Info: Redefining \nameref on input line 48.
 
 (./Bakalauro_darbas_Vytautas_Jankauskas.out)
 (./Bakalauro_darbas_Vytautas_Jankauskas.out)
@@ -542,12 +547,12 @@ Package caption Info: End \AtBeginDocument code.
 File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-77.
+81.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-79.
+83.
 
 (./Bakalauro_darbas_Vytautas_Jankauskas.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -633,74 +638,74 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 \openout7 = `Bakalauro_darbas_Vytautas_Jankauskas.toc'.
 
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-80.
+84.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-80.
+84.
  [2
 
 ]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-83.
+87.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-86.
+90.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-95.
+99.
 
 <images/carplate.jpg, id=119, 398.08725pt x 201.1515pt>
 File: images/carplate.jpg Graphic file (type jpg)
 
 <use images/carplate.jpg>
-Package pdftex.def Info: images/carplate.jpg used on input line 97.
+Package pdftex.def Info: images/carplate.jpg used on input line 101.
 (pdftex.def)             Requested size: 199.04314pt x 100.5755pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-98.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 102.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+106.
  <images/postcode.png, id=123, 224.84pt x 246.9225pt>
 File: images/postcode.png Graphic file (type png)
 
 <use images/postcode.png>
-Package pdftex.def Info: images/postcode.png used on input line 104.
+Package pdftex.def Info: images/postcode.png used on input line 108.
 (pdftex.def)             Requested size: 89.9344pt x 98.76724pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-105.
+109.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-108.
+112.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-108.
+112.
  [3
 
  <./images/carplate.jpg>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-128.
+132.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-128.
+132.
  [4 <./images/postcode.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-134.
+138.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-134.
+138.
  [5]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-136.
+140.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-137.
+141.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-146.
+150.
  <images/threshold.png, id=152, 444.66125pt x 142.5325pt>
 File: images/threshold.png Graphic file (type png)
 
 <use images/threshold.png>
-Package pdftex.def Info: images/threshold.png used on input line 148.
+Package pdftex.def Info: images/threshold.png used on input line 152.
 (pdftex.def)             Requested size: 177.86134pt x 57.01198pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-149.
+153.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-154.
+158.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -724,76 +729,76 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 8.
 )
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 164.
+t line 168.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-164.
+168.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-166.
+171.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-166.
+171.
  [6
 
  <./images/threshold.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-170.
+175.
 
 <images/erosion1.png, id=164, 230.8625pt x 152.57pt>
 File: images/erosion1.png Graphic file (type png)
  <use images/erosion1.png>
-Package pdftex.def Info: images/erosion1.png used on input line 172.
+Package pdftex.def Info: images/erosion1.png used on input line 177.
 (pdftex.def)             Requested size: 115.43095pt x 76.2848pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-173.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 178.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+183.
 
 <images/dilation.png, id=168, 230.8625pt x 152.57pt>
 File: images/dilation.png Graphic file (type png)
  <use images/dilation.png>
-Package pdftex.def Info: images/dilation.png used on input line 180.
+Package pdftex.def Info: images/dilation.png used on input line 185.
 (pdftex.def)             Requested size: 92.34335pt x 61.02692pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-181.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 186.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+191.
 
 <images/contours.png, id=172, 241.90375pt x 253.94875pt>
 File: images/contours.png Graphic file (type png)
 
 <use images/contours.png>
-Package pdftex.def Info: images/contours.png used on input line 188.
+Package pdftex.def Info: images/contours.png used on input line 193.
 (pdftex.def)             Requested size: 72.57167pt x 76.1852pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-189.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-191.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-191.
- [7 <./images/erosion1.png> <./images/dilation.png>]
+194.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 196.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+196.
+ [7 <./images/erosion1.png> <./images/dilation.png>]
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+201.
 
 <images/knn.png, id=192, 278.03876pt x 233.87375pt>
 File: images/knn.png Graphic file (type png)
  <use images/knn.png>
-Package pdftex.def Info: images/knn.png used on input line 198.
+Package pdftex.def Info: images/knn.png used on input line 203.
 (pdftex.def)             Requested size: 166.82454pt x 140.32532pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-199.
+204.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-203.
+208.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-203.
+208.
 
 [8 <./images/contours.png> <./images/knn.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-205.
+210.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-206.
+211.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-207.
+212.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-208.
+213.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -811,13 +816,13 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 5.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-215.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-219.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 220.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-223.
+224.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+225.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+228.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -831,9 +836,9 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 3.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-228.
+233.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-232.
+237.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -847,13 +852,13 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 3.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-237.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-240.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-241.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 242.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+245.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+246.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+247.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -869,55 +874,55 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 4.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-248.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-249.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-249.
- [9]
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-251.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-251.
- [10]
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-252.
+253.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 254.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-266.
+254.
+ [9]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-268.
+256.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-269.
+256.
+ [10]
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+257.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+259.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+271.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+273.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+274.
 
 <images/mnist.png, id=227, 636.3775pt x 301.125pt>
 File: images/mnist.png Graphic file (type png)
  <use images/mnist.png>
-Package pdftex.def Info: images/mnist.png used on input line 271.
+Package pdftex.def Info: images/mnist.png used on input line 276.
 (pdftex.def)             Requested size: 127.27324pt x 60.22392pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-272.
+277.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-279.
+284.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-279.
+284.
 
 [11
 
  <./images/mnist.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-287.
+292.
 
 <images/scanned.png, id=241, 1244.65pt x 153.57375pt>
 File: images/scanned.png Graphic file (type png)
  <use images/scanned.png>
-Package pdftex.def Info: images/scanned.png used on input line 289.
+Package pdftex.def Info: images/scanned.png used on input line 294.
 (pdftex.def)             Requested size: 373.39787pt x 46.07246pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-290.
+295.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-297.
+302.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -941,9 +946,9 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 8.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-307.
+312.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-311.
+316.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -959,14 +964,14 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 4.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-317.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-318.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-318.
- [12 <./images/scanned.png>]
+322.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 323.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+323.
+ [12 <./images/scanned.png>]
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+328.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -980,36 +985,36 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 3.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-328.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 333.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+338.
 
 <images/removecntrs.png, id=250, 52.195pt x 68.255pt>
 File: images/removecntrs.png Graphic file (type png)
 
 <use images/removecntrs.png>
-Package pdftex.def Info: images/removecntrs.png used on input line 335.
+Package pdftex.def Info: images/removecntrs.png used on input line 340.
 (pdftex.def)             Requested size: 26.09743pt x 34.12741pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-336.
+341.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-343.
+348.
 
 <images/selectletter.png, id=251, 239.89626pt x 83.31125pt>
 File: images/selectletter.png Graphic file (type png)
 
 <use images/selectletter.png>
-Package pdftex.def Info: images/selectletter.png used on input line 345.
+Package pdftex.def Info: images/selectletter.png used on input line 350.
 (pdftex.def)             Requested size: 119.94783pt x 41.65552pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-346.
+351.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-355.
+360.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-355.
+360.
  [13 <./images/removecntrs.png> <./images/selectletter.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-356.
+361.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -1027,13 +1032,13 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 5.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-363.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-367.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 368.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-371.
+372.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+373.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+376.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -1057,29 +1062,29 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 8.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-381.
+386.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-385.
+390.
 
 <images/bgr2gray.png, id=262, 945.5325pt x 358.33875pt>
 File: images/bgr2gray.png Graphic file (type png)
 
 <use images/bgr2gray.png>
-Package pdftex.def Info: images/bgr2gray.png used on input line 387.
+Package pdftex.def Info: images/bgr2gray.png used on input line 392.
 (pdftex.def)             Requested size: 378.2063pt x 143.33296pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-388.
+393.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-392.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-394.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-395.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-395.
- [14 <./images/bgr2gray.png>]
+397.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 399.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+400.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+400.
+ [14 <./images/bgr2gray.png>]
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+404.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -1105,25 +1110,25 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 9.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-410.
+415.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-416.
+421.
 
 <images/binarythresh.png, id=271, 934.49126pt x 340.27126pt>
 File: images/binarythresh.png Graphic file (type png)
 
 <use images/binarythresh.png>
-Package pdftex.def Info: images/binarythresh.png used on input line 418.
+Package pdftex.def Info: images/binarythresh.png used on input line 423.
 (pdftex.def)             Requested size: 373.78989pt x 136.10608pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-419.
+424.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-426.
+431.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-426.
+431.
  [15 <./images/binarythresh.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-433.
+438.
 \openout3 = `Bakalauro_darbas_Vytautas_Jankauskas.pyg'.
 
 
@@ -1137,323 +1142,323 @@ LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line
 3.
 )
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-438.
+443.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-447.
+452.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-447.
+452.
  [16]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-448.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-449.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 453.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+454.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+458.
 
 <images/sampleboard.png, id=285, 642.4pt x 481.8pt>
 File: images/sampleboard.png Graphic file (type png)
 
 <use images/sampleboard.png>
-Package pdftex.def Info: images/sampleboard.png used on input line 455.
+Package pdftex.def Info: images/sampleboard.png used on input line 460.
 (pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-456.
+461.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-466.
+471.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-467.
+472.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-468.
+473.
 
 <images/wrongsegmentation.png, id=286, 422.57875pt x 126.4725pt>
 File: images/wrongsegmentation.png Graphic file (type png)
 
 <use images/wrongsegmentation.png>
-Package pdftex.def Info: images/wrongsegmentation.png used on input line 470.
+Package pdftex.def Info: images/wrongsegmentation.png used on input line 475.
 (pdftex.def)             Requested size: 253.5492pt x 75.88408pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-471.
+476.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-474.
+479.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-474.
+479.
  [17
 
  <./images/sampleboard.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-476.
+481.
 
 <images/rightsegmentation.png, id=295, 420.57124pt x 136.51pt>
 File: images/rightsegmentation.png Graphic file (type png)
 
 <use images/rightsegmentation.png>
-Package pdftex.def Info: images/rightsegmentation.png used on input line 478.
+Package pdftex.def Info: images/rightsegmentation.png used on input line 483.
 (pdftex.def)             Requested size: 252.3447pt x 81.90662pt.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-479.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-483.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 484.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-487.
+488.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+489.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+492.
 
 <images/test1.png, id=296, 442.65375pt x 138.5175pt>
 File: images/test1.png Graphic file (type png)
  <use images/test1.png>
-Package pdftex.def Info: images/test1.png used on input line 489.
+Package pdftex.def Info: images/test1.png used on input line 494.
 (pdftex.def)             Requested size: 265.59428pt x 83.11113pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-490.
+495.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-499.
+504.
 
 <images/test2.png, id=297, 388.45125pt x 123.46124pt>
 File: images/test2.png Graphic file (type png)
  <use images/test2.png>
-Package pdftex.def Info: images/test2.png used on input line 501.
+Package pdftex.def Info: images/test2.png used on input line 506.
 (pdftex.def)             Requested size: 233.07254pt x 74.0773pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-502.
+507.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-505.
+510.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-505.
+510.
 
 [18 <./images/wrongsegmentation.png> <./images/rightsegmentation.png> <./images
 /test1.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-509.
+514.
  <images/test9.png, id=309, 384.43625pt x 134.5025pt>
 File: images/test9.png Graphic file (type png)
 
 <use images/test9.png>
-Package pdftex.def Info: images/test9.png used on input line 511.
+Package pdftex.def Info: images/test9.png used on input line 516.
 (pdftex.def)             Requested size: 230.66351pt x 80.7021pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-512.
+517.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-520.
+525.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-521.
+526.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-522.
+527.
  <images/test12.png, id=310, 398.48875pt x 119.44624pt>
 File: images/test12.png Graphic file (type png)
 
 <use images/test12.png>
-Package pdftex.def Info: images/test12.png used on input line 524.
+Package pdftex.def Info: images/test12.png used on input line 529.
 (pdftex.def)             Requested size: 239.0951pt x 71.66829pt.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-525.
+530.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-532.
+537.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-532.
+537.
  [19 <./images/test2.png> <./images/test9.png> <./images/test12.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-534.
+539.
  <images/test14.png, id=324, 417.56pt x 119.44624pt>
 File: images/test14.png Graphic file (type png)
 
 <use images/test14.png>
-Package pdftex.def Info: images/test14.png used on input line 536.
+Package pdftex.def Info: images/test14.png used on input line 541.
 (pdftex.def)             Requested size: 250.53792pt x 71.66829pt.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-537.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-541.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
 542.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-545.
+546.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+547.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+550.
+LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
+554.
 
-Overfull \vbox (17.99445pt too high) detected at line 552
+Overfull \vbox (17.99445pt too high) detected at line 558
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-578.
+585.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-580.
-LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-580.
+585.
 [20 <./images/test14.png>]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-593.
+598.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-593.
+598.
  [21]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-596.
+601.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-596.
+601.
  [22]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-597.
+602.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-599.
+604.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-610.
+615.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-610.
+615.
  [23
 
 ]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-611.
+616.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 632.
+ 637.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 635.
+ 640.
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--636
+Underfull \hbox (badness 10000) in paragraph at lines 640--641
 []\L7x/lmr/m/n/12 D. Kos-ta-di-nov, \L7x/lmr/m/it/12 Pri-va-cy Imp-li-ca-tions 
 of Au-to-ma-tic Li-cen-se Pla-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--636
+Underfull \hbox (badness 10000) in paragraph at lines 640--641
 \L7x/lmr/m/it/12 te Re-cog-ni-tion Tech-no-lo-gy\L7x/lmr/m/n/12 , [][]$http : /
  / resources . infosecinstitute . com /
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 641.
+ 646.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 644.
+ 649.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 647.
+ 652.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 650.
+ 655.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 654.
+ 659.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-656.
+661.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-656.
+661.
 [24
 
 ]
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 657.
+ 662.
 
-Underfull \hbox (badness 10000) in paragraph at lines 657--658
+Underfull \hbox (badness 10000) in paragraph at lines 662--663
 []\L7x/lmr/m/n/12 Atvaizdo slenks-ti-nës ver-tës nu-sta-ty-mas, [][]$http : / /
  docs . opencv . org / trunk / d7 / d4d /
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 660.
+ 665.
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--661
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
 \L7x/lmr/m/n/12 py _ tutorials / py _ ml / py _ knn / py _ knn _ understanding 
 / py _ knn _ understanding .
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 663.
+ 668.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 666.
+ 671.
 
-Underfull \hbox (badness 4391) in paragraph at lines 666--667
+Underfull \hbox (badness 4391) in paragraph at lines 671--672
 []\L7x/lmr/m/n/12 MNIST duo-me-nø iliust-ra-ci-ja, [][]$http : / / neuralnetwor
 ksanddeeplearning . com / images /
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 669.
+ 674.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 672.
+ 677.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 675.
+ 680.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 678.
+ 683.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 681.
+ 686.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-685.
+690.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-685.
+690.
 [25]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-686.
+691.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-688.
+693.
 
-Underfull \hbox (badness 10000) in paragraph at lines 692--695
+Underfull \hbox (badness 10000) in paragraph at lines 697--700
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 692--695
+Underfull \hbox (badness 10000) in paragraph at lines 697--700
 
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-695.
+700.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-698.
+703.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-698.
+703.
 [26
 
 ]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-699.
+704.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-701.
+706.
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--708
+Underfull \hbox (badness 10000) in paragraph at lines 710--713
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--708
+Underfull \hbox (badness 10000) in paragraph at lines 710--713
 
  []
 
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-708.
+713.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-711.
+716.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-711.
+716.
 [27
 
 ]
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-715.
+720.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-716.
+721.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-717.
+722.
 LaTeX Font Info:    Failed loading font information for L7x+cmtt. on input line
- 718.
+ 723.
 runsystem(rm "Bakalauro_darbas_Vytautas_Jankauskas.pyg")...executed.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 743.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
 LaTeX Font Info:    Failed loading font information for L7x+cmr. on input line 
-743.
+748.
  [28
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 743.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
  (./Bakalauro_darbas_Vytautas_Jankauskas.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 743.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 743.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
 Package rerunfilecheck Info: File `Bakalauro_darbas_Vytautas_Jankauskas.out' ha
 s not changed.
 (rerunfilecheck)             Checksum: 7A08DE3227FFBC28AA23F7BE3FAB676D;2985.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 743.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 748.
  ) 
 Here is how much of TeX's memory you used:
- 14813 strings out of 493024
- 227391 string characters out of 6136063
- 349054 words of memory out of 5000000
- 18002 multiletter control sequences out of 15000+600000
+ 14923 strings out of 493024
+ 229446 string characters out of 6136063
+ 351213 words of memory out of 5000000
+ 18109 multiletter control sequences out of 15000+600000
  26164 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,16n,43p,1320b,656s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,16n,43p,1320b,680s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-l7x.enc}</usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1
@@ -1463,7 +1468,7 @@ share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/publ
 ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 i10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb>
-Output written on Bakalauro_darbas_Vytautas_Jankauskas.pdf (28 pages, 2155129 b
+Output written on Bakalauro_darbas_Vytautas_Jankauskas.pdf (28 pages, 2155086 b
 ytes).
 PDF statistics:
  476 PDF objects out of 1000 (max. 8388607)

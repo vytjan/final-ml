@@ -12,10 +12,13 @@
 \usepackage{tocloft}
 \usepackage{graphicx}
 \usepackage{caption}
-\captionsetup[table]{name=Lentelė}
-\captionsetup[figure]{name=Pav.}
-\captionsetup[table]{labelformat=simple}
-\captionsetup[figure]{labelformat=simple}
+%\captionsetup[table]{name=Lentelė}
+%\captionsetup[figure]{name=Pav.}
+%\captionsetup[table]{labelformat=simple}
+\captionsetup{
+	tablename=lentelė.}
+\usepackage[labelsep=space]{caption}
+%\usepackage[labelsep=space]{caption}
 \usepackage{float}
 \usepackage{minipage-marginpar}
 \usepackage{multirow}
@@ -29,8 +32,9 @@
 	fontsize=\footnotesize}
 %\renewcommand\listingscaption{Kodo fragmentas}
 \renewcommand{\figurename}{Pav.}
-%\renewcommand{\tablename}{Lentelė}
-\renewcommand\listingscaption{Kodo fragmentas}
+\renewcommand{\tablename}{lentelė.}
+%\usepackage[tablename=lentelė.]{caption}
+\captionsetup[listing]{labelformat = simple}
 \renewcommand\appendixtocname{Priedas}
 \renewcommand\appendixpagename{Priedas}
 \usepackage{etoolbox}
@@ -161,7 +165,8 @@ key = cv2.waitKey(0)
 if key == 13:
 	print("Paspaudėte Enter.")
 		\end{pythoncode}
-		\caption{Mygtukų paspaudimo naudojimo pavyzdys.}		
+		\caption{kodo fragmentas. Mygtukų paspaudimo naudojimo pavyzdys.}
+		\label{lng:1}		
 	\end{listing}
 	
 	\item Morfologinės transformacijos yra paprastos operacijos, atliekamos remiantis atvaizdo forma. Dažniausiai šioms operacijoms atlikti naudojami binariniai atvaizdai. Kaip įvesties elementai morfologinėms transformacijoms naudojamas norimas atvaizdas ir papildomas struktūrinis elementas, kuris ir nusprendžia, kaip bus vykdoma operacija. Struktūrinis elementas išties yra kvadratinė matrica, dažniausiai užpildyta vienetais. Pagrindinės operacijos yra ardymas (angl. erosion) ir išplėtimas (angl. dilation) \cite{MORPHOLOGIC}.
@@ -212,7 +217,7 @@ import numpy as np
 # Sukuriamas masyvas, kurio pradinės vertės yra atsitiktinės:
 samples =  np.empty((1,300))
 		\end{pythoncode}
-		\caption{Numpy duomenų masyvo su atsitiktiniais duomenimis sukūrimas.}		
+		\caption{kodo fragmentas. Numpy duomenų masyvo su atsitiktiniais duomenimis sukūrimas.}		
 	\end{listing}
 
 
@@ -225,7 +230,7 @@ Sys paketas skirtas sukurti prieigai prie programos vykdymo interpretatoriaus (a
 # Komandų eilutės argumentai, perduodami Python skriptui:
 systemargs = sys.argv
 		\end{pythoncode}
-		\caption{Sys paketo naudojimas komandinės eilutės argumentams gauti.}	
+		\caption{kodo fragmentas. Sys paketo naudojimas komandinės eilutės argumentams gauti.}	
 	\end{listing}
 
 Os paketas leidžia naudoti nuo operacinės sistemos priklausančias funkcijas. Naudingas failų skaitymui ir rašymui, darbui su direktorijomis, laikinų failų valdymui \cite{OS}.
@@ -234,7 +239,7 @@ Os paketas leidžia naudoti nuo operacinės sistemos priklausančias funkcijas. 
 # Naujo aplanko failų sistemoje sukūrimas:
 os.mkdir(os.path.join('letters', str(key)))
 		\end{pythoncode}
-		\caption{Os paketo naudojimas naujam aplankui sukurti.}	
+		\caption{kodo fragmentas. Os paketo naudojimas naujam aplankui sukurti.}	
 	\end{listing}
 	
 \subsubsection{Difflib paketas}
@@ -245,7 +250,7 @@ os.mkdir(os.path.join('letters', str(key)))
 # Cutoff parametras nurodo norimą panašumo koeficientą.
 something = difflib.get_close_matches("žodis", zodynas, n=3, cutoff= 0.35) 
 		\end{pythoncode}
-		\caption{Panašių žodžių paieška naudojant difflib paketą.}	
+		\caption{kodo fragmentas. Panašių žodžių paieška naudojant difflib paketą.}	
 	\end{listing}
 
 \clearpage
@@ -304,7 +309,7 @@ img = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)
 thresh1 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
 	cv2.THRESH_BINARY,15,24)
 \end{pythoncode}
-		\caption{Mokymosi duomenų atvaizdo paruošimas apdorojant vaizdą.}		
+		\caption{kodo fragmentas. Mokymosi duomenų atvaizdo paruošimas apdorojant vaizdą.}		
 	\end{listing}
 
 Kitas žingsnis yra atlikti morfologines transformacijas, kad būtų išryškinti teksto kontūrai. Atlikti bandymai su įvairiais struktūrinio elemento dydžiais, skirtinga ardymo ir išplėtimo operacijų vykdymo tvarka ir jų iteracijų skaičiumi. Galiausiai nustatytos optimaliausios šių parametrų vertės mokymosi duomenų atvaizdams apdoroti.
@@ -314,7 +319,7 @@ Kitas žingsnis yra atlikti morfologines transformacijas, kad būtų išryškint
 kernel2 = np.ones((2,2),np.uint8)		
 eroded = cv2.erode(thresh1,kernel2,iterations = 2)
 \end{pythoncode}
-		\caption{Mokymosi duomenų atvaizdo morfologinė ardymo transformacija.}		
+		\caption{kodo fragmentas. Mokymosi duomenų atvaizdo morfologinė ardymo transformacija.}		
 	\end{listing}
 
 Verta paminėti, kad šiuo atveju ardymo operacija atlikta norint išryškinti teksto kontūrus, nes tekstas binariniame paveikslėlyje buvo juodos spalvos, o jo fonas – baltos.
@@ -325,7 +330,7 @@ Išryškintame binariniame atvaizde atliekama objektų kontūrų paieška.
 #Kontūrų suradimas:
 im2, contours, hierarchy = cv2.findContours(eroded,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 \end{pythoncode}
-	\caption{Kontūrų suradimas atvaizde.}		
+	\caption{kodo fragmentas. Kontūrų suradimas atvaizde.}		
 	\end{listing}
 	
 Rastų kontūrų koordinatės išsaugomos duomenų masyve. Tuomet jie filtruojami – pagal plotą atmetami neatitinkantys raidžių ar žodžių užimamo ploto. Likusieji kontūrai dar kartą filtruojami norint atmesti esančius raidžių viduje. Tam naudojama darbo autoriaus parašyta \textit{removeInnerContours} funkcija.
@@ -360,7 +365,7 @@ Turint reikalingus mokymo duomenų atvaizdus vykdoma \textit{learningset.py} pro
 # Atvaizdo žymos skaitinė reikšmė:
 5.300000000000000000e+01
 \end{pythoncode}
-	\caption{Galutinis mokymosi duomenų formatas.}		
+	\caption{kodo fragmentas. Galutinis mokymosi duomenų formatas.}		
 	\end{listing}
 
 
@@ -378,7 +383,7 @@ img = cv2.imread('gb3.png')
 newx,newy = img.shape[1]/3.5,img.shape[0]/3.5
 newimage = cv2.resize(img,(int(newx), int(newy)))
 	\end{pythoncode}
-	\caption{Atvaizdo įkėlimas į programą.}	
+	\caption{kodo fragmentas. Atvaizdo įkėlimas į programą.}	
 \end{listing}
 Kitame žingsnyje naudojama spalvų erdvės transformacija iš RGB erdvės į pilkos spalvos pustonių. Tokiu būdu gaunamas juodai baltas paveikslėlis.
 
@@ -407,7 +412,7 @@ global model
 model = cv2.ml.KNearest_create()
 model.train(samples, cv2.ml.ROW_SAMPLE, responses)
  	\end{pythoncode}
- 	\caption{KNN algoritmo modelio apmokymas.}	
+ 	\caption{kodo fragmentas. KNN algoritmo modelio apmokymas.}	
  \end{listing}
  
 Modelio apmokymo funkcijos įvestyje naudojami iš mokymo duomenų sugeneruoti tekstiniai failai \textit{generalsamplesNEW.data} ir \textit{generalresponsesNEW.data}.
@@ -435,7 +440,7 @@ Gautas žodžių kontūrų masyvas iteruojamas analizuojant kiekvieną iš eleme
 # Surandamas artimiausias kaimyninis elementas:
 retval, results, neigh_resp, dists = model.findNearest(roismall, k = 1)
 	 	\end{pythoncode}
-	 	\caption{KNN algoritmo artimiausio kaimyninio elemento paieška.}	
+	 	\caption{kodo fragmentas. KNN algoritmo artimiausio kaimyninio elemento paieška.}	
 	 \end{listing}
 	 \item Grįžtama prie to paties žodžio kontūro. Padidinamas apkerpamo atvaizdo plotis ir aukštis, o gautas paveikslėlis vėl analizuojamas naudojant KNN algoritmą.
 	 \item Procedūra kartojama, kol pasiekiamas maksimalus nustatytas vienos raidės aukštis ir plotis originaliame atvaizde. Tuomet visi rezultatai apdorojami ir išrenkamas mažiausią skaitinę vertę turintis (arčiausiai esantis) elementas. Jis laikomas panašiausiu į kažkurią raidę ir yra išsaugomas.
@@ -546,6 +551,7 @@ Dėl algoritmo trūkumų apskritai nebuvo atpažinta 18 žodžių. Išsamūs rez
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
 	\centering
+		\caption{Eksperimento rezultatai.}
 	\label{my-label}
 	\begin{tabular}{llllll}
 		\hline
@@ -575,7 +581,6 @@ Dėl algoritmo trūkumų apskritai nebuvo atpažinta 18 žodžių. Išsamūs rez
 		& \textbf{}                                                                              & \textbf{}                                                                               & \textbf{}                                                                               & \textbf{}                                                                                                   & \textbf{}                                                                                                          \\ \hline
 		\multicolumn{1}{|l|}{\textbf{Viso:}}                                                                   & \multicolumn{1}{l|}{\textbf{74}}                                                       & \multicolumn{1}{l|}{\textbf{7}}                                                         & \multicolumn{1}{l|}{\textbf{1}}                                                         & \multicolumn{1}{l|}{\textbf{18}}                                                                            & \multicolumn{1}{l|}{\textbf{100}}                                                                                  \\ \hline
 	\end{tabular}
-	\caption{Eksperimento rezultatai.}
 \end{table}
 
 Buvo apskaičiuotas vidurkis, kokiu tikslumu vidutiniškai atpažįstami lietuvių kalbos žodžiai iš šio darbo autoriaus pasirinkto 250 žodžių žodyno. Tam naudota ši euristinė formulė: 
